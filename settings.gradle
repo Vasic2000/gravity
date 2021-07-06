@@ -1,2 +1,3 @@
 rootProject.name = "Gravity"
 include ':app'
+include ':app:my_framework'
