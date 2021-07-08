@@ -10,6 +10,7 @@ public class LoopFW implements Runnable {
     Thread gameThread = null;
 
 //    TEMP
+    float nowTime;
     float updates = 0;
     float drawings = 0;
     long timer = 0;
@@ -19,11 +20,13 @@ public class LoopFW implements Runnable {
     public void run() {
         float lastTime = System.nanoTime();
         float delta = 0;
-        float elapsedTime = 0;
+        float elapsedTime;
+        timer = System.currentTimeMillis();
 
         while (runing) {
-            float nowTime = System.nanoTime();
+            nowTime = System.nanoTime();
             elapsedTime = nowTime - lastTime;
+            lastTime = nowTime;
             delta += elapsedTime / UPDATE_TIME;
             if (delta > 1) {
                 updateGame();
@@ -31,7 +34,7 @@ public class LoopFW implements Runnable {
                 delta--;
             }
 
-            if (System.currentTimeMillis() - timer > 1000) {
+            if ((System.currentTimeMillis() - timer) > 1000) {
                 System.out.println("UPDATES = " + updates + ", DRAWINGS " + drawings);
                 timer += 1000;
                 updates = 0;
