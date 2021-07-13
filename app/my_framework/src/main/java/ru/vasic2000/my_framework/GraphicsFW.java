@@ -2,9 +2,13 @@ package ru.vasic2000.my_framework;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 class GraphicsFW {
     private AssetManager assetManagerGame;
@@ -43,5 +47,36 @@ class GraphicsFW {
 
     public void drawTexture(Bitmap textureGame, int x, int y) {
         canvasGame.drawBitmap(textureGame, x, y, null);
+    }
+
+    public int getWidthFrameBuffer() {
+        return frameBufferGame.getWidth();
+    }
+
+    public int getHeightFrameBuffer() {
+        return frameBufferGame.getHeight();
+    }
+
+    public Bitmap newTexture(String fileName) {
+        InputStream inputStream;
+
+        try {
+            inputStream = assetManagerGame.open(fileName);
+            textureGame = BitmapFactory.decodeStream(inputStream);
+            if (textureGame == null) {
+                throw new RuntimeException("Нет BitMap'а " + fileName);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException("Нет BitMap'а " + fileName);
+        }
+        if(inputStream!=null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return  textureGame;
     }
 }
