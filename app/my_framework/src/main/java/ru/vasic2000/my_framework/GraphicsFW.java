@@ -10,7 +10,7 @@ import android.graphics.Typeface;
 import java.io.IOException;
 import java.io.InputStream;
 
-class GraphicsFW {
+public class GraphicsFW {
     private AssetManager assetManagerGame;
     private Bitmap frameBufferGame;
     private Canvas canvasGame;
