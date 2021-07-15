@@ -1,7 +1,7 @@
 package ru.vasic2000.my_framework;
 
 public abstract class SceneFW {
-    private CoreFW coreFW;
+    public CoreFW coreFW;
     public int sceneWidth;
     public int sceneHeight;
     public GraphicsFW graficsFW;
