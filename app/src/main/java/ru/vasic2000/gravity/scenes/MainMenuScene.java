@@ -14,7 +14,9 @@ public class MainMenuScene extends SceneFW {
 
     @Override
     public void update() {
-
+        if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 150, 50)) {
+            coreFW.setScene(new GameScene(coreFW));
+        }
     }
 
     @Override
