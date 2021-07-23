@@ -6,8 +6,10 @@ import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
 
 public class Main extends CoreFW {
-    LoaderAssets loaderAssets = new LoaderAssets(this, this.getGraphicsFW());
+
     public SceneFW getStartScene() {
+        LoaderAssets loaderAssets = new LoaderAssets(
+                this, this.getGraphicsFW());
         return new MainMenuScene(this);
     }
 

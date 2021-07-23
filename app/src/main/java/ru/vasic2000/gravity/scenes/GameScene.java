@@ -3,6 +3,7 @@ package ru.vasic2000.gravity.scenes;
 import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
+import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.generators.BacgroundGenerator;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
@@ -18,11 +19,13 @@ public class GameScene extends SceneFW {
 
     GameState gameState;
     BacgroundGenerator bacgroundGenerator;
+    GameManager gameManager;
 
     public GameScene(CoreFW coreFW) {
         super(coreFW);
         gameState = GameState.READY;
         bacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight);
+        gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
     }
 
     @Override
@@ -76,9 +79,12 @@ public class GameScene extends SceneFW {
 //        graficsFW.drawText("Сцена игры",
 //                250, 300, Color.WHITE, 60, null);
         bacgroundGenerator.drawing(graficsFW);
+        gameManager.drawing(coreFW, graficsFW);
     }
+
     private void updateStateRuning() {
         bacgroundGenerator.update();
+        gameManager.update();
     }
 
     private void drawingGamePause() {

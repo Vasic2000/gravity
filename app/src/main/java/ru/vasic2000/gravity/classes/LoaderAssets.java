@@ -1,5 +1,7 @@
 package ru.vasic2000.gravity.classes;
 
+import java.util.ArrayList;
+
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
 import ru.vasic2000.my_framework.utils.UtilResourse;
@@ -15,6 +17,7 @@ public class LoaderAssets {
     }
 
     private void loadSpritePlayer(GraphicsFW graphicsFW) {
+        UtilResourse.spritePlayer = new ArrayList<>();
         UtilResourse.spritePlayer.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
                 0, 0, 64, 64));
         UtilResourse.spritePlayer.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
