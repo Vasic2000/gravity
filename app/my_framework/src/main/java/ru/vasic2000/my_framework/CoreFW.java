@@ -1,10 +1,7 @@
 package ru.vasic2000.my_framework;
 
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
@@ -19,10 +16,7 @@ public class CoreFW extends AppCompatActivity {
     private GraphicsFW graphicsFW;
     private TouchListenerFW touchListenerFW;
 
-    private Display display;
-    private Point sizeDisplay;
     private Bitmap frameBuffer;
-
     private SceneFW sceneFW;
 
     private float sceneWidth;
@@ -36,24 +30,15 @@ public class CoreFW extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        sizeDisplay = new Point();
-        display = getWindowManager().getDefaultDisplay();
-        display.getSize(sizeDisplay);
-
-//        DisplayMetrics metrics = new DisplayMetrics();
-//        getWindowManager().getCurrentWindowMetrics();
-//        System.out.println("x = " + metrics.heightPixels + " y = " + metrics.widthPixels);
-
         frameBuffer = Bitmap.createBitmap(FRAME_BUFFER_WIDTH,
                 FRAME_BUFFER_HEIGHT, Bitmap.Config.ARGB_8888);
 
-        sceneWidth = (float) FRAME_BUFFER_WIDTH/sizeDisplay.x;
-        sceneHeight = (float) FRAME_BUFFER_HEIGHT/sizeDisplay.y;
+        sceneWidth = (float) FRAME_BUFFER_WIDTH / getResources().getDisplayMetrics().widthPixels;
+        sceneHeight = (float) FRAME_BUFFER_HEIGHT / getResources().getDisplayMetrics().heightPixels;
 
         loopFW = new LoopFW(this, frameBuffer);
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
         touchListenerFW = new TouchListenerFW(loopFW, sceneWidth, sceneHeight);
-
 
         sceneFW = getStartScene();
 

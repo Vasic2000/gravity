@@ -1,10 +1,8 @@
-package ru.vasic2000.gravity.classes;
+package ru.vasic2000.my_framework;
 
 import android.graphics.Bitmap;
 
-import ru.vasic2000.my_framework.GraphicsFW;
-
-public class AnimationGame {
+public class AnimationFW {
     double speedAnimation;
     int delayIndex;
     int countFrame;
@@ -16,9 +14,9 @@ public class AnimationGame {
     Bitmap sprite3;
     Bitmap sprite4;
 
-    public AnimationGame(double speedAnimation,
-                         Bitmap sprite1, Bitmap sprite2,
-                         Bitmap sprite3, Bitmap sprite4) {
+    public AnimationFW(double speedAnimation,
+                       Bitmap sprite1, Bitmap sprite2,
+                       Bitmap sprite3, Bitmap sprite4) {
 
         sprite = sprite1;
 

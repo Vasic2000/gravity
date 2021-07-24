@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
-import ru.vasic2000.my_framework.utils.UtilResourse;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 
 public class LoaderAssets {
     public LoaderAssets(CoreFW coreFW, GraphicsFW graphicsFW) {

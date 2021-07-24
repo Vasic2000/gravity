@@ -1,4 +1,4 @@
-package ru.vasic2000.my_framework.utils;
+package ru.vasic2000.gravity.utilites;
 
 import android.graphics.Bitmap;
 
