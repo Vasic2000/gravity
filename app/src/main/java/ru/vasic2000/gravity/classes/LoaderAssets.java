@@ -18,6 +18,8 @@ public class LoaderAssets {
 
     private void loadSpritePlayer(GraphicsFW graphicsFW) {
         UtilResourse.spritePlayer = new ArrayList<>();
+        UtilResourse.spritePlayerBoost = new ArrayList<>();
+
         UtilResourse.spritePlayer.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
                 0, 0, 64, 64));
         UtilResourse.spritePlayer.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
@@ -26,6 +28,15 @@ public class LoaderAssets {
                 128, 0, 64, 64));
         UtilResourse.spritePlayer.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
                 192, 0, 64, 64));
-    }
 
+        UtilResourse.spritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                0, 64, 64, 64));
+        UtilResourse.spritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                64, 64, 64, 64));
+        UtilResourse.spritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                128, 64, 64, 64));
+        UtilResourse.spritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                192, 64, 64, 64));
+
+    }
 }

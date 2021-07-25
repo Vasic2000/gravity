@@ -18,13 +18,11 @@ public class GameScene extends SceneFW {
     }
 
     GameState gameState;
-    BacgroundGenerator bacgroundGenerator;
     GameManager gameManager;
 
     public GameScene(CoreFW coreFW) {
         super(coreFW);
         gameState = GameState.READY;
-        bacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight);
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
     }
 
@@ -78,12 +76,10 @@ public class GameScene extends SceneFW {
         graficsFW.clearScene(Color.BLACK);
 //        graficsFW.drawText("Сцена игры",
 //                250, 300, Color.WHITE, 60, null);
-        bacgroundGenerator.drawing(graficsFW);
         gameManager.drawing(coreFW, graficsFW);
     }
 
     private void updateStateRuning() {
-        bacgroundGenerator.update();
         gameManager.update();
     }
 

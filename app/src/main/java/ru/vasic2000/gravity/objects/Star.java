@@ -14,7 +14,8 @@ public class Star extends ObjectFW {
         this.y = UtilRandomFW.getCasualNumber(maxScreenY);
     }
 
-    public void update() {
+    public void update(double playerSpeed) {
+        x-=playerSpeed;
         x-=speed;
         if(x < 0) {
             x = maxScreenX;

@@ -18,9 +18,9 @@ public class BacgroundGenerator {
         }
     }
 
-    public void update() {
+    public void update(double playerSpeed) {
         for (Star star : starArrayList) {
-            star.update();
+            star.update(playerSpeed);
         }
     }
 

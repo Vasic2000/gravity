@@ -44,7 +44,7 @@ public class TouchListenerFW implements View.OnTouchListener {
     public boolean getTuchDown(int x, int y, int touchWidth, int touchHeight) {
         if(isTouchDown) {
             if(touchX >= x && touchX <= (x + touchWidth - 1) &&
-                    (touchY >= y && touchY <= (y - touchHeight + 1))) {
+                    touchY <= y && touchY >= (y - touchHeight + 1)) {
                 isTouchDown = false;
                 return true;
             }
