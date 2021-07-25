@@ -10,6 +10,7 @@ public class LoaderAssets {
     public LoaderAssets(CoreFW coreFW, GraphicsFW graphicsFW) {
         loadTexture(graphicsFW);
         loadSpritePlayer(graphicsFW);
+        loadSpriteEnemy(graphicsFW);
     }
 
     private void loadTexture(GraphicsFW graphicsFW) {
@@ -38,5 +39,17 @@ public class LoaderAssets {
         UtilResourse.spritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
                 192, 64, 64, 64));
 
+    }
+
+    private void loadSpriteEnemy(GraphicsFW graphicsFW) {
+        UtilResourse.spriteEnemy = new ArrayList<>();
+        UtilResourse.spriteEnemy.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                256, 0, 64, 64));
+        UtilResourse.spriteEnemy.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                320, 0, 64, 64));
+        UtilResourse.spriteEnemy.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                384, 0, 64, 64));
+        UtilResourse.spriteEnemy.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                448, 0, 64, 64));
     }
 }
