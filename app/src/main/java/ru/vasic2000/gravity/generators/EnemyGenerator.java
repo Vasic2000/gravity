@@ -23,23 +23,16 @@ public class EnemyGenerator {
     }
 
     public void update(double playerSpeed) {
-//        if(enemyArrayList.size() < 3) {
-//            addEnemies(playerSpeed, 3);
-//        }
 
         while(enemyArrayList.size() < 3) {
             addEnemy(playerSpeed);
         }
+
         for (Enemy enemy : enemyArrayList) {
             enemy.update(playerSpeed);
         }
     }
 
-    private void addEnemies(double playerSpeed, int ammountEnemy) {
-        for (int j = 0; j < ammountEnemy; j++) {
-            enemyArrayList.add(new Enemy(maxScreenX, maxScreenY, minScreenY,1));
-        }
-    }
 
     private void addEnemy(double playerSpeed) {
         enemyArrayList.add(new Enemy(maxScreenX, maxScreenY, minScreenY, 1));

@@ -27,11 +27,11 @@ public class MainPlayer extends ObjectFW {
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         this.maxScreenY = maxScreenY - UtilResourse.spritePlayer.get(0).getHeight();
-        animMainPlayer = new AnimationFW(1, UtilResourse.spritePlayer.get(0),
+        animMainPlayer = new AnimationFW(3, UtilResourse.spritePlayer.get(0),
                 UtilResourse.spritePlayer.get(1),
                 UtilResourse.spritePlayer.get(2),
                 UtilResourse.spritePlayer.get(3));
-        animMainPlayerBoost = new AnimationFW(1, UtilResourse.spritePlayerBoost.get(0),
+        animMainPlayerBoost = new AnimationFW(3, UtilResourse.spritePlayerBoost.get(0),
                 UtilResourse.spritePlayerBoost.get(1),
                 UtilResourse.spritePlayerBoost.get(2),
                 UtilResourse.spritePlayerBoost.get(3));

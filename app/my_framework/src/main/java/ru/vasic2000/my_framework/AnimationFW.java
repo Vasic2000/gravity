@@ -15,8 +15,10 @@ public class AnimationFW {
     Bitmap sprite4;
 
     public AnimationFW(double speedAnimation,
-                       Bitmap sprite1, Bitmap sprite2,
-                       Bitmap sprite3, Bitmap sprite4) {
+                       Bitmap sprite1,
+                       Bitmap sprite2,
+                       Bitmap sprite3,
+                       Bitmap sprite4) {
 
         sprite = sprite1;
 
@@ -30,6 +32,13 @@ public class AnimationFW {
 
     public void runAnimation() {
         delayIndex++;
+        if(delayIndex > speedAnimation) {
+            delayIndex = 0;
+            nextFrame();
+        }
+    }
+
+    private void nextFrame() {
         switch (countFrame) {
             case 0:
                 sprite = sprite1;
