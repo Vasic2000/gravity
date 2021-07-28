@@ -11,10 +11,10 @@ public class BacgroundGenerator {
     public ArrayList<Star> starArrayList = new ArrayList<Star>();
 
 
-    public BacgroundGenerator(int sceneWidth, int sceneHeight) {
+    public BacgroundGenerator(int sceneWidth, int sceneHeight, int minScreenY) {
         int starsSpeak = 50;
         for (int i = 0; i < starsSpeak; i++) {
-            starArrayList.add(new Star(sceneWidth, sceneHeight));
+            starArrayList.add(new Star(sceneWidth, sceneHeight, minScreenY));
         }
     }
 

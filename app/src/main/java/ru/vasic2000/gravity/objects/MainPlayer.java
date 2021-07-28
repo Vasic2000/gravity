@@ -16,17 +16,20 @@ public class MainPlayer extends ObjectFW {
     CoreFW coreFW;
 
     Boolean boosting;
+    private int playerShields;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
         x = 20;
         y = 200;
-        speed = 1;
+        speed = 2;
+        playerShields = 3;
 
         boosting = false;
 
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         this.maxScreenY = maxScreenY - UtilResourse.spritePlayer.get(0).getHeight();
+        this.minScreenY = minScreenY;
         animMainPlayer = new AnimationFW(3, UtilResourse.spritePlayer.get(0),
                 UtilResourse.spritePlayer.get(1),
                 UtilResourse.spritePlayer.get(2),
@@ -82,5 +85,8 @@ public class MainPlayer extends ObjectFW {
 
     public double getPlayerSpeed() {
         return speed;
+    }
+    public int getPlayerShields() {
+        return playerShields;
     }
 }
