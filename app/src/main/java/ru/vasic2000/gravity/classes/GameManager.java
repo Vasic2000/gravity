@@ -2,8 +2,10 @@ package ru.vasic2000.gravity.classes;
 
 import ru.vasic2000.gravity.generators.BacgroundGenerator;
 import ru.vasic2000.gravity.generators.EnemyGenerator;
+import ru.vasic2000.gravity.objects.Enemy;
 import ru.vasic2000.gravity.objects.HUD;
 import ru.vasic2000.gravity.objects.MainPlayer;
+import ru.vasic2000.my_framework.CollisionsDetect;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
 
@@ -44,6 +46,16 @@ public class GameManager {
 
         hud.update(passedDistaence, currentPlayerSpeed, currentPlayerShields);
 
+        checkHit();
+    }
+
+    private void checkHit() {
+        for (Enemy enemy : enemyGenerator.enemyArrayList) {
+            if(CollisionsDetect.collisionDetect(mainPlayer, enemy)) {
+             mainPlayer.hitEnemy();
+             enemy.hitPlayer();
+            }
+        }
     }
 
     public void drawing(CoreFW coreFW, GraphicsFW graphicsFW) {

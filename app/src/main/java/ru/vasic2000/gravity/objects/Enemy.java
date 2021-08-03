@@ -1,5 +1,7 @@
 package ru.vasic2000.gravity.objects;
 
+import android.graphics.Rect;
+
 import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.AnimationFW;
 import ru.vasic2000.my_framework.GraphicsFW;
@@ -18,6 +20,8 @@ public class Enemy extends ObjectFW {
 
         x = maxScreenX + UtilRandomFW.getGap(0, maxScreenX/3);
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+
+        radius = UtilResourse.spriteEnemy.get(0).getWidth() / 4;
 
         switch (enemyType) {
             case 1 :
@@ -38,13 +42,23 @@ public class Enemy extends ObjectFW {
         x -= playerSpeed;
         if(x < minScreenX) {
             x = maxScreenX + UtilRandomFW.getGap(0, maxScreenX / 3);
-            y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+            y = UtilRandomFW.getGap(minScreenY, maxScreenY - UtilResourse.spriteEnemy.get(0).getHeight());
             speed = UtilRandomFW.getGap(1,5);
         }
         animEnemy.runAnimation();
+
+        hitBox = new Rect(x,y,
+                UtilResourse.spriteEnemy.get(0).getWidth(),
+                UtilResourse.spriteEnemy.get(0).getWidth());
     }
 
     public void drawing(GraphicsFW graphicsFW){
         animEnemy.drawAnimation(graphicsFW, x, y);
+    }
+
+    public void hitPlayer() {
+        x = maxScreenX + UtilRandomFW.getGap(0, maxScreenX / 3);
+        y = UtilRandomFW.getGap(minScreenY, maxScreenY - UtilResourse.spriteEnemy.get(0).getHeight());
+        speed = UtilRandomFW.getGap(1,5);
     }
 }
