@@ -1,5 +1,7 @@
 package ru.vasic2000.gravity.objects;
 
+import android.graphics.Rect;
+
 import ru.vasic2000.my_framework.AnimationFW;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
@@ -25,6 +27,8 @@ public class MainPlayer extends ObjectFW {
         playerShields = 3;
 
         boosting = false;
+
+        radius = UtilResourse.spritePlayer.get(0).getWidth() / 4;
 
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
@@ -66,6 +70,10 @@ public class MainPlayer extends ObjectFW {
 
         if(speed > MAX_SPEED) speed = MAX_SPEED;
         if(speed < MIN_SPEED) speed = MIN_SPEED;
+
+        hitBox = new Rect(x,y,
+                UtilResourse.spritePlayer.get(0).getWidth(),
+                UtilResourse.spritePlayer.get(0).getWidth());
     }
 
     private void startBoosting() {
@@ -88,5 +96,9 @@ public class MainPlayer extends ObjectFW {
     }
     public int getPlayerShields() {
         return playerShields;
+    }
+
+    public void hitEnemy() {
+        playerShields--;
     }
 }

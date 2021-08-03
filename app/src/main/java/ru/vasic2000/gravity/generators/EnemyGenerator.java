@@ -12,7 +12,7 @@ public class EnemyGenerator {
     private int minScreenX;
     private int minScreenY;
 
-    ArrayList<Enemy> enemyArrayList;
+    public ArrayList<Enemy> enemyArrayList;
 
     public EnemyGenerator(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX = sceneWidth;
