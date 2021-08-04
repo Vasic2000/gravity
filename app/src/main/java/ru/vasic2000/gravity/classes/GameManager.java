@@ -14,10 +14,11 @@ public class GameManager {
     private int maxScreenY;
     private int minScreenX;
     private int minScreenY;
-
     private int passedDistaence;
     private double currentPlayerSpeed;
     private int currentPlayerShields;
+
+    public static boolean gameOver;
 
     MainPlayer mainPlayer;
     BacgroundGenerator bacgroundGenerator;
@@ -30,6 +31,8 @@ public class GameManager {
         this.maxScreenY = sceneHeight;
         minScreenY = hud.HUD_HEIGHT;
         minScreenX = 0;
+
+        gameOver = false;
 
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
         bacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, minScreenY);
@@ -63,6 +66,10 @@ public class GameManager {
         bacgroundGenerator.drawing(graphicsFW);
         enemyGenerator.drawing(graphicsFW);
         hud.drawing(graphicsFW);
+    }
+
+    public int getPassedDistaence() {
+        return passedDistaence;
     }
 
 }

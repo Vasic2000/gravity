@@ -4,7 +4,6 @@ import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.classes.GameManager;
-import ru.vasic2000.gravity.generators.BacgroundGenerator;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
 
@@ -33,6 +32,9 @@ public class GameScene extends SceneFW {
         }
         if(gameState == GameState.RUNING) {
             updateStateRuning();
+            if(GameManager.gameOver) {
+                gameState = GameState.GAMEOVER;
+            }
         }
         if(gameState == GameState.PAUSE) {
             updateStatePause();
@@ -44,9 +46,6 @@ public class GameScene extends SceneFW {
 
     @Override
     public void drawing() {
-//        graficsFW.drawText("Game Scene",
-//                100, 150, Color.GREEN, 60,null);
-
         if(gameState == GameState.READY) {
             drawingGameReady();
         }
@@ -57,7 +56,7 @@ public class GameScene extends SceneFW {
             drawingGamePause();
         }
         if(gameState == GameState.GAMEOVER) {
-            drawingGameGameOver();
+            drawingGameOver();
         }
     }
 
@@ -74,8 +73,6 @@ public class GameScene extends SceneFW {
 
     private void drawingGameRuning() {
         graficsFW.clearScene(Color.BLACK);
-//        graficsFW.drawText("Сцена игры",
-//                250, 300, Color.WHITE, 60, null);
         gameManager.drawing(coreFW, graficsFW);
     }
 
@@ -88,9 +85,24 @@ public class GameScene extends SceneFW {
     private void updateStatePause() {
     }
 
-    private void drawingGameGameOver() {
+    private void drawingGameOver() {
+        graficsFW.clearScene(Color.BLACK);
+        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_distance)
+                + " " + gameManager.getPassedDistaence(),250, 200, Color.WHITE, 40,  null);
+        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_gameOver),
+                250, 300, Color.WHITE, 60,  null);
+        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_replay),
+                250, 370, Color.WHITE, 40,  null);
+        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_mainMenu),
+                250, 440, Color.WHITE, 40,  null);
     }
     private void updateStateGameOver() {
+        if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 200, 45)) {
+            coreFW.setScene(new GameScene(coreFW));
+        }
+        if(coreFW.getTouchListenerFW().getTuchUp(250, 438, 200, 45)) {
+            coreFW.setScene(new MainMenuScene(coreFW));
+        }
     }
 
     @Override
