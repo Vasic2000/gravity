@@ -2,6 +2,7 @@ package ru.vasic2000.gravity.objects;
 
 import android.graphics.Rect;
 
+import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.my_framework.AnimationFW;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
@@ -16,11 +17,16 @@ public class MainPlayer extends ObjectFW {
 
     AnimationFW animMainPlayer;
     AnimationFW animMainPlayerBoost;
+    AnimationFW animMainPlayerExplose;
+
     CoreFW coreFW;
-    UtilTimerDelay shieldHitON;
+
+    UtilTimerDelay timerShieldHitON;
+    UtilTimerDelay timerGameOwerON;
 
     Boolean boosting;
     Boolean hitEnemy;
+    Boolean isGameOver;
 
     private int playerShields;
 
@@ -32,10 +38,13 @@ public class MainPlayer extends ObjectFW {
 
         boosting = false;
         hitEnemy = false;
+        isGameOver = false;
 
         radius = UtilResourse.spritePlayer.get(0).getWidth() / 4;
 
-        shieldHitON = new UtilTimerDelay();
+        timerShieldHitON = new UtilTimerDelay();
+        timerGameOwerON = new UtilTimerDelay();
+
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         this.maxScreenY = maxScreenY - UtilResourse.spritePlayer.get(0).getHeight();
@@ -48,6 +57,10 @@ public class MainPlayer extends ObjectFW {
                 UtilResourse.spritePlayerBoost.get(1),
                 UtilResourse.spritePlayerBoost.get(2),
                 UtilResourse.spritePlayerBoost.get(3));
+        animMainPlayerExplose = new AnimationFW(3, UtilResourse.spritePlayerExplose.get(0),
+                UtilResourse.spritePlayerExplose.get(1),
+                UtilResourse.spritePlayerExplose.get(2),
+                UtilResourse.spritePlayerExplose.get(3));
     }
 
     public void update() {
@@ -80,6 +93,10 @@ public class MainPlayer extends ObjectFW {
         hitBox = new Rect(x,y,
                 UtilResourse.spritePlayer.get(0).getWidth(),
                 UtilResourse.spritePlayer.get(0).getWidth());
+
+        if(isGameOver) {
+            animMainPlayerExplose.runAnimation();
+        }
     }
 
     private void startBoosting() {
@@ -91,14 +108,20 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        if(!hitEnemy) {
-            if(boosting)
-                animMainPlayerBoost.drawAnimation(graphicsFW, x, y);
-            else
-                animMainPlayer.drawAnimation(graphicsFW, x, y);
+        if(!isGameOver) {
+            if (!hitEnemy) {
+                if (boosting)
+                    animMainPlayerBoost.drawAnimation(graphicsFW, x, y);
+                else
+                    animMainPlayer.drawAnimation(graphicsFW, x, y);
+            } else graphicsFW.drawTexture(UtilResourse.shieldHitEnamy, x, y);
+            hitEnemy = !timerShieldHitON.timerDelay(0.3);
+        } else {
+            animMainPlayerExplose.drawAnimation(graphicsFW, x, y);
+            if(timerGameOwerON.timerDelay(0.6)) {
+                GameManager.gameOver = true;
+            }
         }
-        else graphicsFW.drawTexture(UtilResourse.shieldHitEnamy, x, y);
-        hitEnemy = !shieldHitON.timerDelay(0.3);
     }
 
     public double getPlayerSpeed() {
@@ -110,7 +133,11 @@ public class MainPlayer extends ObjectFW {
 
     public void hitEnemy() {
         playerShields--;
+        if(playerShields < 0) {
+            isGameOver = true;
+            timerGameOwerON.setStartTime();
+        }
         hitEnemy = true;
-        shieldHitON.setStartTime();
+        timerShieldHitON.setStartTime();
     }
 }

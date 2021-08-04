@@ -19,6 +19,8 @@ public class GameManager {
     private double currentPlayerSpeed;
     private int currentPlayerShields;
 
+    public static boolean gameOver;
+
     MainPlayer mainPlayer;
     BacgroundGenerator bacgroundGenerator;
     EnemyGenerator enemyGenerator;
@@ -30,6 +32,8 @@ public class GameManager {
         this.maxScreenY = sceneHeight;
         minScreenY = hud.HUD_HEIGHT;
         minScreenX = 0;
+
+        gameOver = false;
 
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
         bacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, minScreenY);
