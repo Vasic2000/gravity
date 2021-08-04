@@ -7,6 +7,7 @@ import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
 import ru.vasic2000.my_framework.ObjectFW;
 import ru.vasic2000.gravity.utilites.UtilResourse;
+import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class MainPlayer extends ObjectFW {
     final int GRAVITY = -3;
@@ -16,8 +17,11 @@ public class MainPlayer extends ObjectFW {
     AnimationFW animMainPlayer;
     AnimationFW animMainPlayerBoost;
     CoreFW coreFW;
+    UtilTimerDelay shieldHitON;
 
     Boolean boosting;
+    Boolean hitEnemy;
+
     private int playerShields;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
@@ -27,9 +31,11 @@ public class MainPlayer extends ObjectFW {
         playerShields = 3;
 
         boosting = false;
+        hitEnemy = false;
 
         radius = UtilResourse.spritePlayer.get(0).getWidth() / 4;
 
+        shieldHitON = new UtilTimerDelay();
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         this.maxScreenY = maxScreenY - UtilResourse.spritePlayer.get(0).getHeight();
@@ -85,10 +91,14 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        if(boosting)
-            animMainPlayerBoost.drawAnimation(graphicsFW, x, y);
-        else
-            animMainPlayer.drawAnimation(graphicsFW, x, y);
+        if(!hitEnemy) {
+            if(boosting)
+                animMainPlayerBoost.drawAnimation(graphicsFW, x, y);
+            else
+                animMainPlayer.drawAnimation(graphicsFW, x, y);
+        }
+        else graphicsFW.drawTexture(UtilResourse.shieldHitEnamy, x, y);
+        hitEnemy = !shieldHitON.timerDelay(0.3);
     }
 
     public double getPlayerSpeed() {
@@ -100,5 +110,7 @@ public class MainPlayer extends ObjectFW {
 
     public void hitEnemy() {
         playerShields--;
+        hitEnemy = true;
+        shieldHitON.setStartTime();
     }
 }

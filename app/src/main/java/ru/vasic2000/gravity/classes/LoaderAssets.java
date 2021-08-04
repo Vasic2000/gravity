@@ -11,6 +11,12 @@ public class LoaderAssets {
         loadTexture(graphicsFW);
         loadSpritePlayer(graphicsFW);
         loadSpriteEnemy(graphicsFW);
+        loadShieldHitEnemy(graphicsFW);
+    }
+
+    private void loadShieldHitEnemy(GraphicsFW graphicsFW) {
+        UtilResourse.shieldHitEnamy = graphicsFW.newSprite(UtilResourse.textureAtlas,
+                0,128, 64,64);
     }
 
     private void loadTexture(GraphicsFW graphicsFW) {

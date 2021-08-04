@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 public class UtilResourse {
     public static Bitmap textureAtlas;
+    public static Bitmap shieldHitEnamy;
+
     public static ArrayList<Bitmap> spritePlayer;
     public static ArrayList<Bitmap> spritePlayerBoost;
-
     public static ArrayList<Bitmap> spriteEnemy;
 
 }
