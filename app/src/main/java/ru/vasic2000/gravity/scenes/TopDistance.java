@@ -2,6 +2,8 @@ package ru.vasic2000.gravity.scenes;
 
 import android.graphics.Color;
 
+import java.util.SplittableRandom;
+
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.my_framework.CoreFW;
@@ -22,6 +24,7 @@ public class TopDistance extends SceneFW {
     public void update() {
         if(coreFW.getTouchListenerFW().getTuchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             coreFW.setScene(new MainMenuScene(coreFW));
+            SettingsGame.saveScore(coreFW);
         }
     }
 
@@ -44,12 +47,10 @@ public class TopDistance extends SceneFW {
 
     @Override
     public void dispose() {
-
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override

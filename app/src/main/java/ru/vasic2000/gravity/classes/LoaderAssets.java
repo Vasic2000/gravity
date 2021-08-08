@@ -2,6 +2,7 @@ package ru.vasic2000.gravity.classes;
 
 import java.util.ArrayList;
 
+import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
 import ru.vasic2000.gravity.utilites.UtilResourse;
@@ -12,6 +13,11 @@ public class LoaderAssets {
         loadSpritePlayer(graphicsFW);
         loadSpriteEnemy(graphicsFW);
         loadShieldHitEnemy(graphicsFW);
+        loadScore(coreFW);
+    }
+
+    private void loadScore(CoreFW coreFW) {
+        SettingsGame.loadScore(coreFW);
     }
 
     private void loadShieldHitEnemy(GraphicsFW graphicsFW) {

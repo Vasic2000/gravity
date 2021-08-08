@@ -98,6 +98,7 @@ public class GameScene extends SceneFW {
                 250, 440, Color.WHITE, 40,  null);
     }
     private void updateStateGameOver() {
+
         SettingsGame.addDistance(gameManager.getPassedDistaence());
 
         if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 200, 45)) {
