@@ -21,5 +21,6 @@
     <string name="txt_HUD_currentPlayerShields">Shields : </string>
 
     <!---->
+    <string name="txt_top_distance">Best scores</string>
 
 </resources>

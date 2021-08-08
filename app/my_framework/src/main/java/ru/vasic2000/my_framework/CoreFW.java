@@ -1,5 +1,6 @@
 package ru.vasic2000.my_framework;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -22,12 +23,17 @@ public class CoreFW extends AppCompatActivity {
     private float sceneWidth;
     private float sceneHeight;
 
+    private SharedPreferences sharedPreferences;
+
     private boolean stateOnPause;
     private boolean stateOnResume;
+
+    private final String SETTINGS = "settings";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(SETTINGS, MODE_PRIVATE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         frameBuffer = Bitmap.createBitmap(FRAME_BUFFER_WIDTH,
@@ -92,5 +98,9 @@ public class CoreFW extends AppCompatActivity {
 
     public SceneFW getStartScene() {
         return sceneFW;
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
     }
 }

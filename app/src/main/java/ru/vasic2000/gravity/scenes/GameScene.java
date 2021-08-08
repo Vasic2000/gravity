@@ -4,6 +4,7 @@ import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.classes.GameManager;
+import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
 
@@ -97,6 +98,9 @@ public class GameScene extends SceneFW {
                 250, 440, Color.WHITE, 40,  null);
     }
     private void updateStateGameOver() {
+
+        SettingsGame.addDistance(gameManager.getPassedDistaence());
+
         if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 200, 45)) {
             coreFW.setScene(new GameScene(coreFW));
         }
