@@ -5,6 +5,7 @@ import android.graphics.Color;
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.SettingsGame;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
 
@@ -24,6 +25,8 @@ public class GameScene extends SceneFW {
         super(coreFW);
         gameState = GameState.READY;
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
+
+        UtilResourse.gameMusic.play(true, 4f);
     }
 
     @Override
@@ -111,16 +114,16 @@ public class GameScene extends SceneFW {
 
     @Override
     public void dispose() {
-
+        UtilResourse.gameMusic.dispose();
     }
 
     @Override
     public void pause() {
-
+        UtilResourse.gameMusic.stop();
     }
 
     @Override
     public void resume() {
-
+        UtilResourse.gameMusic.play(true, 4f);
     }
 }

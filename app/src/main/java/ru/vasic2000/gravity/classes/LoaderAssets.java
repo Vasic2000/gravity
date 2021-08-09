@@ -13,7 +13,13 @@ public class LoaderAssets {
         loadSpritePlayer(graphicsFW);
         loadSpriteEnemy(graphicsFW);
         loadShieldHitEnemy(graphicsFW);
+        loadAudio(coreFW);
+
         loadScore(coreFW);
+    }
+
+    private void loadAudio(CoreFW coreFW) {
+        UtilResourse.gameMusic = coreFW.getAudioFW().newMusic("music.mp3");
     }
 
     private void loadScore(CoreFW coreFW) {

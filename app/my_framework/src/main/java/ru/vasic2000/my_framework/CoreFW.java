@@ -17,6 +17,8 @@ public class CoreFW extends AppCompatActivity {
     private GraphicsFW graphicsFW;
     private TouchListenerFW touchListenerFW;
 
+   private  AudioFW audioFW;
+
     private Bitmap frameBuffer;
     private SceneFW sceneFW;
 
@@ -41,6 +43,8 @@ public class CoreFW extends AppCompatActivity {
 
         sceneWidth = (float) FRAME_BUFFER_WIDTH / getResources().getDisplayMetrics().widthPixels;
         sceneHeight = (float) FRAME_BUFFER_HEIGHT / getResources().getDisplayMetrics().heightPixels;
+
+        audioFW = new AudioFW(this);
 
         loopFW = new LoopFW(this, frameBuffer);
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
@@ -88,7 +92,7 @@ public class CoreFW extends AppCompatActivity {
         }
         this.sceneFW.pause();
         this.sceneFW.dispose();
-        sceneFW.resume();
+        this.sceneFW.resume();
         this.sceneFW = sceneFW;
     }
 
@@ -102,5 +106,9 @@ public class CoreFW extends AppCompatActivity {
 
     public SharedPreferences getSharedPreferences() {
         return sharedPreferences;
+    }
+
+    public AudioFW getAudioFW() {
+        return audioFW;
     }
 }
