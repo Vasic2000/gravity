@@ -11,16 +11,13 @@ public class AudioFW {
     AssetManager assetManager;
 
     public AudioFW(Activity activity) {
-        this.assetManager = assetManager;
         activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         assetManager = activity.getAssets();
     }
 
     public MusicFW newMusic(String fileName) {
-        AssetFileDescriptor assetFileDescriptor = null;
         try {
-            assetFileDescriptor = assetManager.openFd(fileName);
-            return new MusicFW(assetFileDescriptor);
+            return new MusicFW(assetManager.openFd(fileName));
         } catch (IOException e) {
             throw new RuntimeException("No music");
         }

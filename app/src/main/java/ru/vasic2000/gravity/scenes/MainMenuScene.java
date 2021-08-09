@@ -14,10 +14,10 @@ public class MainMenuScene extends SceneFW {
 
     @Override
     public void update() {
-        if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 150, 50)) {
+        if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 250, 50)) {
             coreFW.setScene(new GameScene(coreFW));
         }
-        if(coreFW.getTouchListenerFW().getTuchUp(20, 400, 150, 50)) {
+        if(coreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 50)) {
             coreFW.setScene(new TopDistance(coreFW));
         }
 

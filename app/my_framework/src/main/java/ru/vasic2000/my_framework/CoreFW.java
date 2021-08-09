@@ -17,7 +17,7 @@ public class CoreFW extends AppCompatActivity {
     private GraphicsFW graphicsFW;
     private TouchListenerFW touchListenerFW;
 
-   private  AudioFW audioFW;
+    private AudioFW audioFW;
 
     private Bitmap frameBuffer;
     private SceneFW sceneFW;
@@ -73,6 +73,7 @@ public class CoreFW extends AppCompatActivity {
         super.onPause();
         sceneFW.pause();
         loopFW.stopGame();
+        stateOnPause = true;
         if(isFinishing()) {
             sceneFW.dispose();
         }
@@ -91,8 +92,9 @@ public class CoreFW extends AppCompatActivity {
             throw new IllegalArgumentException("Беда со сценой");
         }
         this.sceneFW.pause();
-        this.sceneFW.dispose();
-        this.sceneFW.resume();
+//        this.sceneFW.dispose();
+        sceneFW.resume();
+        sceneFW.update();
         this.sceneFW = sceneFW;
     }
 

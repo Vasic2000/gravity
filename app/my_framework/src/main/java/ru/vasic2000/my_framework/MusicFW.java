@@ -8,7 +8,7 @@ import java.io.IOException;
 public class MusicFW implements MediaPlayer.OnCompletionListener {
 
     MediaPlayer mediaPlayer;
-    boolean isSoundPrepeared = false;
+    boolean isSoundPrepeared;
 
     public MusicFW(AssetFileDescriptor assetFileDescriptor) {
         mediaPlayer = new MediaPlayer();
@@ -24,21 +24,19 @@ public class MusicFW implements MediaPlayer.OnCompletionListener {
     }
 
     public void play(boolean looping, float volume) {
-        if(mediaPlayer.isPlaying()) {
-            return;
-        }
-
-        synchronized (this) {
-            if(!isSoundPrepeared) {
-                try {
-                    mediaPlayer.prepare();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        if(!mediaPlayer.isPlaying()) {
+            synchronized (this) {
+                if(!isSoundPrepeared) {
+                    try {
+                        mediaPlayer.prepare();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                mediaPlayer.setLooping(looping);
+                mediaPlayer.setVolume(volume, volume);
+                mediaPlayer.start();
             }
-            mediaPlayer.setLooping(looping);
-            mediaPlayer.setVolume(volume, volume);
-            mediaPlayer.start();
         }
     }
 

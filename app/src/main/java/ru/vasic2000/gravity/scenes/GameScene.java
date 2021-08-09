@@ -69,6 +69,7 @@ public class GameScene extends SceneFW {
         graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateReady_ready),
                 250, 300, Color.WHITE, 60, null);
     }
+
     private void updateStateReady() {
         if(coreFW.getTouchListenerFW().getTuchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             gameState = GameState.RUNING;
@@ -104,7 +105,7 @@ public class GameScene extends SceneFW {
 
         SettingsGame.addDistance(gameManager.getPassedDistaence());
 
-        if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 200, 45)) {
+        if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 250, 45)) {
             coreFW.setScene(new GameScene(coreFW));
         }
         if(coreFW.getTouchListenerFW().getTuchUp(250, 438, 200, 45)) {
