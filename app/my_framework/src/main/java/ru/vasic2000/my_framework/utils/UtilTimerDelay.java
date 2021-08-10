@@ -6,7 +6,7 @@ public class UtilTimerDelay {
     double elapsedTime;
     final double SECOND = 1000000000;
 
-    public void setStartTime() {
+    public void startTimer() {
         startTime = System.nanoTime()/SECOND;
     }
 

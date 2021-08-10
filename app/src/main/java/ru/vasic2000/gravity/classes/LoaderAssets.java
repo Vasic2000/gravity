@@ -13,6 +13,8 @@ public class LoaderAssets {
         loadSpritePlayer(graphicsFW);
         loadSpriteEnemy(graphicsFW);
         loadShieldHitEnemy(graphicsFW);
+        loadSpritePlayerShieldsOn(graphicsFW);
+        loadGifts(graphicsFW);
         loadAudio(coreFW);
         loadScore(coreFW);
     }
@@ -82,4 +84,40 @@ public class LoaderAssets {
         UtilResourse.spriteEnemy.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
                 448, 0, 64, 64));
     }
+
+    private void loadSpritePlayerShieldsOn(GraphicsFW graphicsFW) {
+
+        UtilResourse.spritePlayerShieldsOn = new ArrayList<>();
+        UtilResourse.spritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                0, 128, 64, 64));
+        UtilResourse.spritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                64, 128, 64, 64));
+        UtilResourse.spritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                128, 128, 64, 64));
+        UtilResourse.spritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                192, 128, 64, 64));
+
+        UtilResourse.spritePlayerShieldsBoost = new ArrayList<>();
+        UtilResourse.spritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                0, 192, 64, 64));
+        UtilResourse.spritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                64, 192, 64, 64));
+        UtilResourse.spritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                128, 192, 64, 64));
+        UtilResourse.spritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                192, 192, 64, 64));
+    }
+
+    private void loadGifts(GraphicsFW graphicsFW) {
+        UtilResourse.spriteProtector = new ArrayList<>();
+        UtilResourse.spriteProtector.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                256, 192, 32, 32));
+        UtilResourse.spriteProtector.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                288, 192, 32, 32));
+        UtilResourse.spriteProtector.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                320, 192, 32, 32));
+        UtilResourse.spriteProtector.add(graphicsFW.newSprite(UtilResourse.textureAtlas,
+                352, 192, 32, 32));
+    }
+
 }
