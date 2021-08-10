@@ -16,6 +16,10 @@ public class UtilResourse {
     public static ArrayList<Bitmap> spriteEnemy;
     public static ArrayList<Bitmap> spritePlayerExplose;
 
+    public static ArrayList<Bitmap> spritePlayerShieldsOn;
+    public static ArrayList<Bitmap> spritePlayerShieldsBoost;
+    public static ArrayList<Bitmap> spriteProtector;
+
     public static MusicFW gameMusic;
 
     public static SoundFW hit;

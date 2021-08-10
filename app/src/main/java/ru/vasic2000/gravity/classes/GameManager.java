@@ -2,6 +2,7 @@ package ru.vasic2000.gravity.classes;
 
 import ru.vasic2000.gravity.generators.BacgroundGenerator;
 import ru.vasic2000.gravity.generators.EnemyGenerator;
+import ru.vasic2000.gravity.generators.GiftGenerators;
 import ru.vasic2000.gravity.objects.Enemy;
 import ru.vasic2000.gravity.objects.HUD;
 import ru.vasic2000.gravity.objects.MainPlayer;
@@ -11,6 +12,9 @@ import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.GraphicsFW;
 
 public class GameManager {
+
+    public final static double SPEED_ANIMATION = 2;
+
     private int maxScreenX;
     private int maxScreenY;
     private int minScreenX;
@@ -24,6 +28,7 @@ public class GameManager {
     MainPlayer mainPlayer;
     BacgroundGenerator bacgroundGenerator;
     EnemyGenerator enemyGenerator;
+    GiftGenerators giftGenerators;
     HUD hud;
 
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
@@ -38,12 +43,14 @@ public class GameManager {
         mainPlayer = new MainPlayer(coreFW, maxScreenX, maxScreenY, minScreenY);
         bacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, minScreenY);
         enemyGenerator = new EnemyGenerator(maxScreenX, maxScreenY, minScreenY);
+        giftGenerators = new GiftGenerators(sceneWidth, sceneHeight, minScreenY);
     }
 
     public void update() {
         mainPlayer.update();
         bacgroundGenerator.update(mainPlayer.getPlayerSpeed());
         enemyGenerator.update(mainPlayer.getPlayerSpeed());
+        giftGenerators.update(mainPlayer.getPlayerSpeed());
         passedDistaence += mainPlayer.getPlayerSpeed();
         currentPlayerShields = mainPlayer.getPlayerShields();
         currentPlayerSpeed = mainPlayer.getPlayerSpeed();
@@ -60,6 +67,9 @@ public class GameManager {
                 mainPlayer.hitEnemy();
                 enemy.hitPlayer();
             }
+            if(CollisionsDetect.collisionDetect(mainPlayer, giftGenerators.getProtector())) {
+                takeProtector();
+            }
         }
     }
 
@@ -67,7 +77,13 @@ public class GameManager {
         mainPlayer.drawing(graphicsFW);
         bacgroundGenerator.drawing(graphicsFW);
         enemyGenerator.drawing(graphicsFW);
+        giftGenerators.drawing(graphicsFW);
         hud.drawing(graphicsFW);
+    }
+
+    private void takeProtector() {
+        mainPlayer.takeProtector();
+        giftGenerators.receiveProtector();
     }
 
     public int getPassedDistaence() {

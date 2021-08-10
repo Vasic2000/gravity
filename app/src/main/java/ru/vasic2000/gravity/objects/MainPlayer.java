@@ -18,49 +18,70 @@ public class MainPlayer extends ObjectFW {
     AnimationFW animMainPlayer;
     AnimationFW animMainPlayerBoost;
     AnimationFW animMainPlayerExplose;
+    AnimationFW animMainPlayerShieldsOn;
+    AnimationFW animMainPlayerShieldsBoostOn;
+
 
     CoreFW coreFW;
 
     UtilTimerDelay timerShieldHitON;
     UtilTimerDelay timerGameOwerON;
+    UtilTimerDelay timerShieldOn;
 
-    Boolean boosting;
-    Boolean hitEnemy;
-    Boolean isGameOver;
+    boolean boosting;
+    boolean hitEnemy;
+    boolean isGameOver;
+
+    static boolean shieldsOn;
 
     private int playerShields;
 
     public MainPlayer(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
         x = 20;
         y = 200;
-        speed = 2;
+        speed = GameManager.SPEED_ANIMATION;
         playerShields = 3;
 
         boosting = false;
         hitEnemy = false;
         isGameOver = false;
+        shieldsOn = false;
 
         radius = UtilResourse.spritePlayer.get(0).getWidth() / 4;
 
         timerShieldHitON = new UtilTimerDelay();
         timerGameOwerON = new UtilTimerDelay();
+        timerShieldOn = new UtilTimerDelay();
 
         this.coreFW = coreFW;
         this.maxScreenX = maxScreenX;
         this.maxScreenY = maxScreenY - UtilResourse.spritePlayer.get(0).getHeight();
         this.minScreenY = minScreenY;
-        animMainPlayer = new AnimationFW(3, UtilResourse.spritePlayer.get(0),
+
+        initAnimations();
+    }
+
+    private void initAnimations() {
+        animMainPlayer = new AnimationFW(speed, UtilResourse.spritePlayer.get(0),
                 UtilResourse.spritePlayer.get(1),
                 UtilResourse.spritePlayer.get(2),
                 UtilResourse.spritePlayer.get(3));
-        animMainPlayerBoost = new AnimationFW(3, UtilResourse.spritePlayerBoost.get(0),
+        animMainPlayerBoost = new AnimationFW(speed, UtilResourse.spritePlayerBoost.get(0),
                 UtilResourse.spritePlayerBoost.get(1),
                 UtilResourse.spritePlayerBoost.get(2),
                 UtilResourse.spritePlayerBoost.get(3));
-        animMainPlayerExplose = new AnimationFW(3, UtilResourse.spritePlayerExplose.get(0),
+        animMainPlayerExplose = new AnimationFW(speed, UtilResourse.spritePlayerExplose.get(0),
                 UtilResourse.spritePlayerExplose.get(1),
                 UtilResourse.spritePlayerExplose.get(2),
                 UtilResourse.spritePlayerExplose.get(3));
+        animMainPlayerShieldsOn = new AnimationFW(speed, UtilResourse.spritePlayerShieldsOn.get(0),
+                UtilResourse.spritePlayerShieldsOn.get(1),
+                UtilResourse.spritePlayerShieldsOn.get(2),
+                UtilResourse.spritePlayerShieldsOn.get(3));
+        animMainPlayerShieldsBoostOn = new AnimationFW(speed, UtilResourse.spritePlayerShieldsBoost.get(0),
+                UtilResourse.spritePlayerShieldsBoost.get(1),
+                UtilResourse.spritePlayerShieldsBoost.get(2),
+                UtilResourse.spritePlayerShieldsBoost.get(3));
     }
 
     public void update() {
@@ -73,28 +94,37 @@ public class MainPlayer extends ObjectFW {
             stopBoosting();
         }
 
-        if(boosting)
+        if (boosting)
             speed += 0.1;
         else
             speed -= 3;
 
-        y-=(speed + GRAVITY);
-        if(y < minScreenY) y = minScreenY;
-        if(y > maxScreenY) y = maxScreenY;
+        y -= (speed + GRAVITY);
+        if (y < minScreenY) y = minScreenY;
+        if (y > maxScreenY) y = maxScreenY;
 
-        if(boosting)
-            animMainPlayerBoost.runAnimation();
-        else
-            animMainPlayer.runAnimation();
+        if(timerShieldOn.timerDelay(5)) {
+            shieldsOn = false;
+        }
 
-        if(speed > MAX_SPEED) speed = MAX_SPEED;
-        if(speed < MIN_SPEED) speed = MIN_SPEED;
+        if (boosting)
+            if (shieldsOn) {
+                animMainPlayerShieldsBoostOn.runAnimation();
+            } else {
+                animMainPlayerBoost.runAnimation();
+            }
+        else if (shieldsOn) {
+            animMainPlayerShieldsOn.runAnimation();
+        } else animMainPlayer.runAnimation();
 
-        hitBox = new Rect(x,y,
+        if (speed > MAX_SPEED) speed = MAX_SPEED;
+        if (speed < MIN_SPEED) speed = MIN_SPEED;
+
+        hitBox = new Rect(x, y,
                 UtilResourse.spritePlayer.get(0).getWidth(),
                 UtilResourse.spritePlayer.get(0).getWidth());
 
-        if(isGameOver) {
+        if (isGameOver) {
             animMainPlayerExplose.runAnimation();
         }
     }
@@ -108,17 +138,21 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        if(!isGameOver) {
+        if (!isGameOver) {
             if (!hitEnemy) {
-                if (boosting)
-                    animMainPlayerBoost.drawAnimation(graphicsFW, x, y);
-                else
-                    animMainPlayer.drawAnimation(graphicsFW, x, y);
+                if (boosting) {
+                    if (shieldsOn) {
+                        animMainPlayerShieldsBoostOn.drawAnimation(graphicsFW, x, y);
+                    } else animMainPlayerBoost.drawAnimation(graphicsFW, x, y);
+                } else if (shieldsOn) {
+                    animMainPlayerShieldsOn.drawAnimation(graphicsFW, x, y);
+                } else animMainPlayer.drawAnimation(graphicsFW, x, y);
             } else graphicsFW.drawTexture(UtilResourse.shieldHitEnamy, x, y);
+
             hitEnemy = !timerShieldHitON.timerDelay(0.3);
         } else {
             animMainPlayerExplose.drawAnimation(graphicsFW, x, y);
-            if(timerGameOwerON.timerDelay(0.6)) {
+            if (timerGameOwerON.timerDelay(0.6)) {
                 GameManager.gameOver = true;
             }
         }
@@ -132,13 +166,24 @@ public class MainPlayer extends ObjectFW {
     }
 
     public void hitEnemy() {
-        playerShields--;
-        if(playerShields < 0) {
-            UtilResourse.explode.play(3);
-            isGameOver = true;
-            timerGameOwerON.setStartTime();
+        if(!shieldsOn) {
+            playerShields--;
+            if (playerShields < 0) {
+                UtilResourse.explode.play(3);
+                isGameOver = true;
+                timerGameOwerON.startTimer();
+            }
+            hitEnemy = true;
+            timerShieldHitON.startTimer();
         }
-        hitEnemy = true;
-        timerShieldHitON.setStartTime();
+    }
+
+    public void takeProtector() {
+        shieldsOn = true;
+        timerShieldOn.startTimer();
+    }
+
+    public static boolean isShieldsOn() {
+        return shieldsOn;
     }
 }

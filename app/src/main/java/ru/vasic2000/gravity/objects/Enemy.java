@@ -2,6 +2,7 @@ package ru.vasic2000.gravity.objects;
 
 import android.graphics.Rect;
 
+import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.AnimationFW;
 import ru.vasic2000.my_framework.GraphicsFW;
@@ -26,7 +27,7 @@ public class Enemy extends ObjectFW {
         switch (enemyType) {
             case 1 :
                 speed = UtilRandomFW.getGap(1,5);
-                animEnemy = new AnimationFW(3, UtilResourse.spriteEnemy.get(0),
+                animEnemy = new AnimationFW(GameManager.SPEED_ANIMATION, UtilResourse.spriteEnemy.get(0),
                         UtilResourse.spriteEnemy.get(1),
                         UtilResourse.spriteEnemy.get(2),
                         UtilResourse.spriteEnemy.get(3));
