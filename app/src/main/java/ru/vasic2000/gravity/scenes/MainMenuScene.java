@@ -3,6 +3,7 @@ package ru.vasic2000.gravity.scenes;
 import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
 
@@ -14,11 +15,13 @@ public class MainMenuScene extends SceneFW {
 
     @Override
     public void update() {
-        if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 150, 50)) {
+        if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 250, 50)) {
             coreFW.setScene(new GameScene(coreFW));
+            UtilResourse.touch.play(1);
         }
-        if(coreFW.getTouchListenerFW().getTuchUp(20, 400, 150, 50)) {
+        if(coreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 50)) {
             coreFW.setScene(new TopDistance(coreFW));
+            UtilResourse.touch.play(1);
         }
 
     }

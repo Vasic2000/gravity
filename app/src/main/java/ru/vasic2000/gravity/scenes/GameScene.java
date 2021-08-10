@@ -5,6 +5,7 @@ import android.graphics.Color;
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.SettingsGame;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.CoreFW;
 import ru.vasic2000.my_framework.SceneFW;
 
@@ -24,6 +25,8 @@ public class GameScene extends SceneFW {
         super(coreFW);
         gameState = GameState.READY;
         gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
+
+        UtilResourse.gameMusic.play(true, 0.5f);
     }
 
     @Override
@@ -66,6 +69,7 @@ public class GameScene extends SceneFW {
         graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateReady_ready),
                 250, 300, Color.WHITE, 60, null);
     }
+
     private void updateStateReady() {
         if(coreFW.getTouchListenerFW().getTuchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
             gameState = GameState.RUNING;
@@ -101,7 +105,7 @@ public class GameScene extends SceneFW {
 
         SettingsGame.addDistance(gameManager.getPassedDistaence());
 
-        if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 200, 45)) {
+        if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 250, 45)) {
             coreFW.setScene(new GameScene(coreFW));
         }
         if(coreFW.getTouchListenerFW().getTuchUp(250, 438, 200, 45)) {
@@ -111,16 +115,19 @@ public class GameScene extends SceneFW {
 
     @Override
     public void dispose() {
-
+        UtilResourse.explode.dispose();
+        UtilResourse.hit.dispose();
+        UtilResourse.touch.dispose();
+        UtilResourse.gameMusic.dispose();
     }
 
     @Override
     public void pause() {
-
+        UtilResourse.gameMusic.stop();
     }
 
     @Override
     public void resume() {
-
+        UtilResourse.gameMusic.play(true, 0.5f);
     }
 }

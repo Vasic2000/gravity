@@ -17,6 +17,8 @@ public class CoreFW extends AppCompatActivity {
     private GraphicsFW graphicsFW;
     private TouchListenerFW touchListenerFW;
 
+    private AudioFW audioFW;
+
     private Bitmap frameBuffer;
     private SceneFW sceneFW;
 
@@ -41,6 +43,8 @@ public class CoreFW extends AppCompatActivity {
 
         sceneWidth = (float) FRAME_BUFFER_WIDTH / getResources().getDisplayMetrics().widthPixels;
         sceneHeight = (float) FRAME_BUFFER_HEIGHT / getResources().getDisplayMetrics().heightPixels;
+
+        audioFW = new AudioFW(this);
 
         loopFW = new LoopFW(this, frameBuffer);
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
@@ -69,6 +73,7 @@ public class CoreFW extends AppCompatActivity {
         super.onPause();
         sceneFW.pause();
         loopFW.stopGame();
+        stateOnPause = true;
         if(isFinishing()) {
             sceneFW.dispose();
         }
@@ -87,8 +92,9 @@ public class CoreFW extends AppCompatActivity {
             throw new IllegalArgumentException("Беда со сценой");
         }
         this.sceneFW.pause();
-        this.sceneFW.dispose();
+//        this.sceneFW.dispose();
         sceneFW.resume();
+        sceneFW.update();
         this.sceneFW = sceneFW;
     }
 
@@ -102,5 +108,9 @@ public class CoreFW extends AppCompatActivity {
 
     public SharedPreferences getSharedPreferences() {
         return sharedPreferences;
+    }
+
+    public AudioFW getAudioFW() {
+        return audioFW;
     }
 }
