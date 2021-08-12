@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import ru.vasic2000.my_framework.CoreFW;
 
 public class SettingsGame {
+    
     public static int[] distance = {0,0,0,0,0};
 
     public static void addDistance(int value) {
@@ -32,5 +33,9 @@ public class SettingsGame {
         for (int i = 0; i < 5; i++) {
             distance[i] = coreFW.getSharedPreferences().getInt("passedDistance" + i, distance[i]);
         }
+    }
+
+    public static int[] getDistance() {
+        return distance;
     }
 }

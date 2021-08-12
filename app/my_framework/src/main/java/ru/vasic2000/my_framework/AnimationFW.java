@@ -8,11 +8,11 @@ public class AnimationFW {
     int countFrame;
     int frames;
 
-    Bitmap sprite;
-    Bitmap sprite1;
-    Bitmap sprite2;
-    Bitmap sprite3;
-    Bitmap sprite4;
+    private Bitmap mSprite;
+    private Bitmap mSprite1;
+    private Bitmap mSprite2;
+    private Bitmap mSprite3;
+    private Bitmap mSprite4;
 
     public AnimationFW(double speedAnimation,
                        Bitmap sprite1,
@@ -20,13 +20,13 @@ public class AnimationFW {
                        Bitmap sprite3,
                        Bitmap sprite4) {
 
-        sprite = sprite1;
+        mSprite = sprite1;
 
         this.speedAnimation = speedAnimation;
-        this.sprite1 = sprite1;
-        this.sprite2 = sprite2;
-        this.sprite3 = sprite3;
-        this.sprite4 = sprite4;
+        this.mSprite1 = sprite1;
+        this.mSprite2 = sprite2;
+        this.mSprite3 = sprite3;
+        this.mSprite4 = sprite4;
         frames = 4;
     }
 
@@ -41,19 +41,19 @@ public class AnimationFW {
     private void nextFrame() {
         switch (countFrame) {
             case 0:
-                sprite = sprite1;
+                mSprite = mSprite1;
                 break;
 
             case 1:
-                sprite = sprite2;
+                mSprite = mSprite2;
                 break;
 
             case 2:
-                sprite = sprite3;
+                mSprite = mSprite3;
                 break;
 
             case 3:
-                sprite = sprite4;
+                mSprite = mSprite4;
                 break;
         }
 
@@ -64,6 +64,6 @@ public class AnimationFW {
     }
 
     public void drawAnimation(GraphicsFW graphicsFW, int x, int y) {
-        graphicsFW.drawTexture(sprite, x, y);
+        graphicsFW.drawTexture(mSprite, x, y);
     }
 }
