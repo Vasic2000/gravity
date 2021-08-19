@@ -6,8 +6,8 @@ import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.CoreFW;
-import ru.vasic2000.my_framework.SceneFW;
+import ru.vasic2000.my_framework.core.CoreFW;
+import ru.vasic2000.my_framework.core.SceneFW;
 
 public class GameScene extends SceneFW {
 
@@ -24,9 +24,7 @@ public class GameScene extends SceneFW {
     public GameScene(CoreFW coreFW) {
         super(coreFW);
         mGameState = GameState.READY;
-        mGameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
-
-        UtilResourse.sGameMusic.play(true, 0.5f);
+        mGameManager = new GameManager(coreFW, pSceneWidth, pSceneHeight);
     }
 
     @Override
@@ -65,51 +63,64 @@ public class GameScene extends SceneFW {
     }
 
     private void drawingGameReady() {
-        graficsFW.clearScene(Color.BLACK);
-        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_stateReady_ready),
+        pGraficsFW.clearScene(Color.BLACK);
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_stateReady_ready),
                 250, 300, Color.WHITE, 60, null);
     }
 
     private void updateStateReady() {
-        if(coreFW.getTouchListenerFW().getTuchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
+        if(pCoreFW.getTouchListenerFW().getTuchUp(0, pSceneHeight, pSceneWidth, pSceneHeight)) {
             mGameState = GameState.RUNING;
         }
     }
 
     private void drawingGameRuning() {
-        graficsFW.clearScene(Color.BLACK);
-        mGameManager.drawing(graficsFW);
+        pGraficsFW.clearScene(Color.BLACK);
+        mGameManager.drawing(pGraficsFW);
     }
 
     private void updateStateRuning() {
         mGameManager.update();
+        if (GameManager.gameOver) {
+            mGameState = GameState.GAME_OVER;
+        }
+        if(pCoreFW.isKeyBackPressed()) {
+            mGameState = GameState.PAUSE;
+        }
+        pCoreFW.setKeyBackPressed(false);
     }
 
     private void drawingGamePause() {
+        pCoreFW.getGraphicsFW().clearScene(Color.BLACK);
+        pCoreFW.getGraphicsFW().drawText("PAUSE", 300,300, Color.GREEN, 50, null);
     }
+
     private void updateStatePause() {
+        if(pCoreFW.getTouchListenerFW().getTuchUp(0, pSceneHeight, pSceneWidth, pSceneHeight)) {
+            mGameState = GameState.RUNING;
+        }
     }
 
     private void drawingGameOver() {
-        graficsFW.clearScene(Color.BLACK);
-        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_distance)
+        pGraficsFW.clearScene(Color.BLACK);
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_distance)
                 + " " + mGameManager.getPassedDistaence(),250, 200, Color.WHITE, 40,  null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_gameOver),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_gameOver),
                 250, 300, Color.WHITE, 60,  null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_replay),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_replay),
                 250, 370, Color.WHITE, 40,  null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_mainMenu),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_mainMenu),
                 250, 440, Color.WHITE, 40,  null);
     }
     private void updateStateGameOver() {
 
         SettingsGame.addDistance(mGameManager.getPassedDistaence());
 
-        if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 250, 45)) {
-            coreFW.setScene(new GameScene(coreFW));
+        if(pCoreFW.getTouchListenerFW().getTuchUp(250, 368, 250, 45)) {
+            pCoreFW.setScene(new GameScene(pCoreFW));
         }
-        if(coreFW.getTouchListenerFW().getTuchUp(250, 438, 200, 45)) {
-            coreFW.setScene(new MainMenuScene(coreFW));
+        if(pCoreFW.getTouchListenerFW().getTuchUp(250, 438, 200, 45)) {
+            pCoreFW.setScene(new MainMenuScene(pCoreFW));
         }
     }
 
@@ -128,6 +139,8 @@ public class GameScene extends SceneFW {
 
     @Override
     public void resume() {
-        UtilResourse.sGameMusic.play(true, 0.5f);
+        if(SettingsGame.sMusicOn) {
+            UtilResourse.sGameMusic.play(true, 0.5f);
+        }
     }
 }

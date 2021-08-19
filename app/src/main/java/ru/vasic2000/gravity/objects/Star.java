@@ -1,6 +1,6 @@
 package ru.vasic2000.gravity.objects;
 
-import ru.vasic2000.my_framework.ObjectFW;
+import ru.vasic2000.my_framework.core.ObjectFW;
 import ru.vasic2000.my_framework.utils.UtilRandomFW;
 
 public class Star extends ObjectFW {
@@ -9,29 +9,29 @@ public class Star extends ObjectFW {
     }
 
     private void init(int sceneWidth, int sceneHeight, int minScreenY) {
-        this.maxScreenX = sceneWidth;
-        this.maxScreenY = sceneHeight;
-        this.minScreenX = minScreenY;
-        this.minScreenY = minScreenY;
-        this.speed = 2;
-        this.x = UtilRandomFW.getCasualNumber(maxScreenX);
-        this.y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+        this.pMaxScreenX = sceneWidth;
+        this.pMaxScreenY = sceneHeight;
+        this.pMinScreenX = minScreenY;
+        this.pMinScreenY = minScreenY;
+        this.pSpeed = 2;
+        this.pX = UtilRandomFW.getCasualNumber(pMaxScreenX);
+        this.pY = UtilRandomFW.getGap(minScreenY, pMaxScreenY);
     }
 
     public void update(double playerSpeed) {
-        x-=playerSpeed;
-        x-=speed;
-        if(x < 0) {
-            x = maxScreenX;
-            y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+        pX -=playerSpeed;
+        pX -= pSpeed;
+        if(pX < 0) {
+            pX = pMaxScreenX;
+            pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY);
         }
     }
 
     public int getX() {
-        return x;
+        return pX;
     }
 
     public int getY() {
-        return y;
+        return pY;
     }
 }

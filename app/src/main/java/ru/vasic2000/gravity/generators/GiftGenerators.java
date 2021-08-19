@@ -2,7 +2,7 @@ package ru.vasic2000.gravity.generators;
 
 import ru.vasic2000.gravity.objects.MainPlayer;
 import ru.vasic2000.gravity.objects.Protector;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class GiftGenerators {

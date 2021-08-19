@@ -1,7 +1,5 @@
 package ru.vasic2000.gravity.classes;
 
-import java.util.ArrayList;
-
 import ru.vasic2000.gravity.generators.BacgroundGenerator;
 import ru.vasic2000.gravity.generators.EnemyGenerator;
 import ru.vasic2000.gravity.generators.GiftGenerators;
@@ -9,9 +7,9 @@ import ru.vasic2000.gravity.objects.Enemy;
 import ru.vasic2000.gravity.objects.HUD;
 import ru.vasic2000.gravity.objects.MainPlayer;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.CollisionsDetect;
-import ru.vasic2000.my_framework.CoreFW;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.utils.UtilCollisionsDetect;
+import ru.vasic2000.my_framework.core.CoreFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 
 public class GameManager {
 
@@ -19,64 +17,70 @@ public class GameManager {
     private int mPassedDistaence;
     public static boolean gameOver;
 
-    MainPlayer mainPlayer;
-    BacgroundGenerator bacgroundGenerator;
-    EnemyGenerator enemyGenerator;
-    GiftGenerators giftGenerators;
-    HUD hud;
+    private MainPlayer mMainPlayer;
+    private BacgroundGenerator mBacgroundGenerator;
+    private EnemyGenerator mEnemyGenerator;
+    private GiftGenerators mGiftGenerators;
+    private HUD mHud;
 
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
-        hud = new HUD(coreFW);
+        init(coreFW, sceneWidth, sceneHeight);
+    }
+
+    private void init(CoreFW coreFW, int sceneWidth, int sceneHeight) {
+        mHud = new HUD(coreFW);
         int mMaxScreenX  = sceneWidth;
         int mMaxScreenY = sceneHeight;
-        int mMinScreenY = hud.getHUD_HEIGHT();
+        int mMinScreenY = mHud.getHUD_HEIGHT();
 
         gameOver = false;
 
-        mainPlayer = new MainPlayer(coreFW, mMaxScreenX, mMaxScreenY, mMinScreenY);
-        bacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, mMinScreenY);
-        enemyGenerator = new EnemyGenerator(mMaxScreenX, mMaxScreenY, mMinScreenY);
-        giftGenerators = new GiftGenerators(sceneWidth, sceneHeight, mMinScreenY);
+        mMainPlayer = new MainPlayer(coreFW, mMaxScreenX, mMaxScreenY, mMinScreenY);
+        mBacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, mMinScreenY);
+        mEnemyGenerator = new EnemyGenerator(mMaxScreenX, mMaxScreenY, mMinScreenY);
+        mGiftGenerators = new GiftGenerators(sceneWidth, sceneHeight, mMinScreenY);
     }
 
     public void update() {
-        mainPlayer.update();
-        bacgroundGenerator.update(mainPlayer.getPlayerSpeed());
-        enemyGenerator.update(mainPlayer.getPlayerSpeed());
-        giftGenerators.update(mainPlayer.getPlayerSpeed());
-        mPassedDistaence += mainPlayer.getPlayerSpeed();
-        int mCurrentPlayerShields = mainPlayer.getPlayerShields();
-        double mCurrentPlayerSpeed = mainPlayer.getPlayerSpeed();
-
-        hud.update(mPassedDistaence, mCurrentPlayerSpeed, mCurrentPlayerShields);
-
+        updateObjects();
+        mPassedDistaence += mMainPlayer.getPlayerSpeed();
+        int mCurrentPlayerShields = mMainPlayer.getPlayerShields();
+        double mCurrentPlayerSpeed = mMainPlayer.getPlayerSpeed();
+        mHud.update(mPassedDistaence, mCurrentPlayerSpeed, mCurrentPlayerShields);
         checkHit();
     }
 
+    private void updateObjects() {
+        mMainPlayer.update();
+        mBacgroundGenerator.update(mMainPlayer.getPlayerSpeed());
+        mEnemyGenerator.update(mMainPlayer.getPlayerSpeed());
+        mGiftGenerators.update(mMainPlayer.getPlayerSpeed());
+    }
+
     private void checkHit() {
-        for (Enemy enemy : enemyGenerator.getEnemyArrayList()) {
-            if (CollisionsDetect.collisionDetect(mainPlayer, enemy)) {
+        for (Enemy enemy : mEnemyGenerator.getEnemyArrayList()) {
+            if (UtilCollisionsDetect.collisionDetect(mMainPlayer, enemy)) {
                 UtilResourse.sHit.play(1);
-                mainPlayer.hitEnemy();
+                mMainPlayer.hitEnemy();
                 enemy.hitPlayer();
             }
-            if (CollisionsDetect.collisionDetect(mainPlayer, giftGenerators.getProtector())) {
+            if (UtilCollisionsDetect.collisionDetect(mMainPlayer, mGiftGenerators.getProtector())) {
                 takeProtector();
             }
         }
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        mainPlayer.drawing(graphicsFW);
-        bacgroundGenerator.drawing(graphicsFW);
-        enemyGenerator.drawing(graphicsFW);
-        giftGenerators.drawing(graphicsFW);
-        hud.drawing(graphicsFW);
+        mMainPlayer.drawing(graphicsFW);
+        mBacgroundGenerator.drawing(graphicsFW);
+        mEnemyGenerator.drawing(graphicsFW);
+        mGiftGenerators.drawing(graphicsFW);
+        mHud.drawing(graphicsFW);
     }
 
     private void takeProtector() {
-        mainPlayer.takeProtector();
-        giftGenerators.receiveProtector();
+        mMainPlayer.takeProtector();
+        mGiftGenerators.receiveProtector();
     }
 
     public int getPassedDistaence() {

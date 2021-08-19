@@ -8,8 +8,8 @@ import ru.vasic2000.gravity.interfaces.TaskCompleteListener;
 import ru.vasic2000.gravity.scenes.LoaderResourcesScene;
 import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.CoreFW;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.core.CoreFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 
 public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     private TaskCompleteListener mTaskCompleteListener;
@@ -41,56 +41,56 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     private void loaderAssets() {
         loadTexture(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(100);
         loadSpritePlayer(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(250);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(200);
         loadSpriteEnemy(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(300);
         loadShieldHitEnemy(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(150);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(400);
         loadSpritePlayerShieldsOn(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(150);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(500);
         loadGifts(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(1000);
+            Thread.sleep(300);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(600);
         loadAudio(mCoreFW);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(150);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(700);
         loadScore(mCoreFW);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(150);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

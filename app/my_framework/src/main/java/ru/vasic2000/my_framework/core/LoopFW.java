@@ -1,4 +1,4 @@
-package ru.vasic2000.my_framework;
+package ru.vasic2000.my_framework.core;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,20 +13,20 @@ public class LoopFW extends SurfaceView implements Runnable {
 
     private boolean runing = false;
 
-    Thread gameThread = null;
-    CoreFW coreFW;
-    Bitmap frameBuffer;
-    SurfaceHolder surfaceHolder;
-    Canvas canvas;
-    Rect rect;
+    private Thread mGameThread = null;
+    private CoreFW mCoreFW;
+    private Bitmap mFrameBuffer;
+    private SurfaceHolder mSurfaceHolder;
+    private Canvas mCanvas;
+    private Rect mRect;
 
     public LoopFW(CoreFW coreFW, Bitmap frameBuffer) {
         super(coreFW);
-        this.frameBuffer = frameBuffer;
-        this.coreFW = coreFW;
-        this.surfaceHolder = getHolder();
-        rect = new Rect();
-        canvas = new Canvas();
+        this.mFrameBuffer = frameBuffer;
+        this.mCoreFW = coreFW;
+        this.mSurfaceHolder = getHolder();
+        mRect = new Rect();
+        mCanvas = new Canvas();
     }
 
 //    TEMP
@@ -66,17 +66,17 @@ public class LoopFW extends SurfaceView implements Runnable {
 
     private void updateGame() {
         updates++;
-        coreFW.getCurrentScene().update();
+        mCoreFW.getCurrentScene().update();
     }
 
     private void drawingGame() {
         drawings++;
-        if(surfaceHolder.getSurface().isValid()) {
-            canvas = surfaceHolder.lockCanvas();
-            canvas.getClipBounds(rect);
-            canvas.drawBitmap(frameBuffer, null, rect, null);
-            coreFW.getCurrentScene().drawing();
-            surfaceHolder.unlockCanvasAndPost(canvas);
+        if(mSurfaceHolder.getSurface().isValid()) {
+            mCanvas = mSurfaceHolder.lockCanvas();
+            mCanvas.getClipBounds(mRect);
+            mCanvas.drawBitmap(mFrameBuffer, null, mRect, null);
+            mCoreFW.getCurrentScene().drawing();
+            mSurfaceHolder.unlockCanvasAndPost(mCanvas);
         }
     }
 
@@ -84,8 +84,8 @@ public class LoopFW extends SurfaceView implements Runnable {
         if(runing) return;
         else {
             runing = true;
-            gameThread = new Thread(this);
-            gameThread.start();
+            mGameThread = new Thread(this);
+            mGameThread.start();
         }
     }
 
@@ -94,7 +94,7 @@ public class LoopFW extends SurfaceView implements Runnable {
         else {
             runing = false;
             try {
-                gameThread.join();
+                mGameThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -4,8 +4,8 @@ import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
-import ru.vasic2000.my_framework.MusicFW;
-import ru.vasic2000.my_framework.SoundFW;
+import ru.vasic2000.my_framework.core.MusicFW;
+import ru.vasic2000.my_framework.core.SoundFW;
 
 public class UtilResourse {
     public static Bitmap sTextureAtlas;

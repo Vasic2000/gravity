@@ -1,4 +1,4 @@
-package ru.vasic2000.my_framework;
+package ru.vasic2000.my_framework.core;
 
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -11,59 +11,59 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class GraphicsFW {
-    private AssetManager assetManagerGame;
-    private Bitmap frameBufferGame;
-    private Canvas canvasGame;
-    private Paint paintGame;
-    private Bitmap textureGame;
+    private AssetManager mAssetManagerGame;
+    private Bitmap mFrameBufferGame;
+    private Canvas mCanvasGame;
+    private Paint mPaintGame;
+    private Bitmap mTextureGame;
 
     public GraphicsFW(AssetManager assetManagerGame, Bitmap frameBufferGame) {
-        this.assetManagerGame = assetManagerGame;
-        this.frameBufferGame = frameBufferGame;
-        this.canvasGame = new Canvas(frameBufferGame);
-        this.paintGame = new Paint();
+        this.mAssetManagerGame = assetManagerGame;
+        this.mFrameBufferGame = frameBufferGame;
+        this.mCanvasGame = new Canvas(frameBufferGame);
+        this.mPaintGame = new Paint();
     }
 
     public void clearScene(int colorRGB) {
-        canvasGame.drawRGB(colorRGB, colorRGB, colorRGB);
+        mCanvasGame.drawRGB(colorRGB, colorRGB, colorRGB);
     }
 
     public void drawPixel(int x, int y, int color) {
-        paintGame.setColor(color);
-        canvasGame.drawPoint(x, y, paintGame);
+        mPaintGame.setColor(color);
+        mCanvasGame.drawPoint(x, y, mPaintGame);
     }
 
     public void drawLine(int startX, int startY, int stopX, int stopY, int color) {
-        paintGame.setColor(color);
-        canvasGame.drawLine(startX, startY, stopX, stopY, paintGame);
+        mPaintGame.setColor(color);
+        mCanvasGame.drawLine(startX, startY, stopX, stopY, mPaintGame);
     }
 
     public void drawText(String text, int x, int y, int color, int textSize, Typeface font) {
-        paintGame.setColor(color);
-        paintGame.setTextSize(textSize);
-        paintGame.setTypeface(font);
-        canvasGame.drawText(text, x, y, paintGame);
+        mPaintGame.setColor(color);
+        mPaintGame.setTextSize(textSize);
+        mPaintGame.setTypeface(font);
+        mCanvasGame.drawText(text, x, y, mPaintGame);
     }
 
     public void drawTexture(Bitmap textureGame, int x, int y) {
-        canvasGame.drawBitmap(textureGame, x, y, null);
+        mCanvasGame.drawBitmap(textureGame, x, y, null);
     }
 
     public int getWidthFrameBuffer() {
-        return frameBufferGame.getWidth();
+        return mFrameBufferGame.getWidth();
     }
 
     public int getHeightFrameBuffer() {
-        return frameBufferGame.getHeight();
+        return mFrameBufferGame.getHeight();
     }
 
     public Bitmap newTexture(String fileName) {
         InputStream inputStream;
 
         try {
-            inputStream = assetManagerGame.open(fileName);
-            textureGame = BitmapFactory.decodeStream(inputStream);
-            if (textureGame == null) {
+            inputStream = mAssetManagerGame.open(fileName);
+            mTextureGame = BitmapFactory.decodeStream(inputStream);
+            if (mTextureGame == null) {
                 throw new RuntimeException("Нет BitMap'а " + fileName);
             }
 
@@ -77,7 +77,7 @@ public class GraphicsFW {
                 e.printStackTrace();
             }
         }
-        return  textureGame;
+        return mTextureGame;
     }
 
     public Bitmap newSprite(Bitmap textureAtlas, int x, int y, int spriteWidth, int spriteHeight){
