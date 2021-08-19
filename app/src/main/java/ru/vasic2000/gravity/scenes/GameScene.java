@@ -15,51 +15,51 @@ public class GameScene extends SceneFW {
         READY,
         RUNING,
         PAUSE,
-        GAMEOVER
+        GAME_OVER
     }
 
-    GameState gameState;
-    GameManager gameManager;
+    private GameState mGameState;
+    private GameManager mGameManager;
 
     public GameScene(CoreFW coreFW) {
         super(coreFW);
-        gameState = GameState.READY;
-        gameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
+        mGameState = GameState.READY;
+        mGameManager = new GameManager(coreFW, sceneWidth, sceneHeight);
 
-        UtilResourse.gameMusic.play(true, 0.5f);
+        UtilResourse.sGameMusic.play(true, 0.5f);
     }
 
     @Override
     public void update() {
-        if(gameState == GameState.READY) {
+        if(mGameState == GameState.READY) {
             updateStateReady();
         }
-        if(gameState == GameState.RUNING) {
+        if(mGameState == GameState.RUNING) {
             updateStateRuning();
             if(GameManager.gameOver) {
-                gameState = GameState.GAMEOVER;
+                mGameState = GameState.GAME_OVER;
             }
         }
-        if(gameState == GameState.PAUSE) {
+        if(mGameState == GameState.PAUSE) {
             updateStatePause();
         }
-        if(gameState == GameState.GAMEOVER) {
+        if(mGameState == GameState.GAME_OVER) {
             updateStateGameOver();
         }
     }
 
     @Override
     public void drawing() {
-        if(gameState == GameState.READY) {
+        if(mGameState == GameState.READY) {
             drawingGameReady();
         }
-        if(gameState == GameState.RUNING) {
+        if(mGameState == GameState.RUNING) {
             drawingGameRuning();
         }
-        if(gameState == GameState.PAUSE) {
+        if(mGameState == GameState.PAUSE) {
             drawingGamePause();
         }
-        if(gameState == GameState.GAMEOVER) {
+        if(mGameState == GameState.GAME_OVER) {
             drawingGameOver();
         }
     }
@@ -72,17 +72,17 @@ public class GameScene extends SceneFW {
 
     private void updateStateReady() {
         if(coreFW.getTouchListenerFW().getTuchUp(0, sceneHeight, sceneWidth, sceneHeight)) {
-            gameState = GameState.RUNING;
+            mGameState = GameState.RUNING;
         }
     }
 
     private void drawingGameRuning() {
         graficsFW.clearScene(Color.BLACK);
-        gameManager.drawing(coreFW, graficsFW);
+        mGameManager.drawing(graficsFW);
     }
 
     private void updateStateRuning() {
-        gameManager.update();
+        mGameManager.update();
     }
 
     private void drawingGamePause() {
@@ -93,7 +93,7 @@ public class GameScene extends SceneFW {
     private void drawingGameOver() {
         graficsFW.clearScene(Color.BLACK);
         graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_distance)
-                + " " + gameManager.getPassedDistaence(),250, 200, Color.WHITE, 40,  null);
+                + " " + mGameManager.getPassedDistaence(),250, 200, Color.WHITE, 40,  null);
         graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_gameOver),
                 250, 300, Color.WHITE, 60,  null);
         graficsFW.drawText(coreFW.getString(R.string.txt_gameScene_gameOver_replay),
@@ -103,7 +103,7 @@ public class GameScene extends SceneFW {
     }
     private void updateStateGameOver() {
 
-        SettingsGame.addDistance(gameManager.getPassedDistaence());
+        SettingsGame.addDistance(mGameManager.getPassedDistaence());
 
         if(coreFW.getTouchListenerFW().getTuchUp(250, 368, 250, 45)) {
             coreFW.setScene(new GameScene(coreFW));
@@ -115,19 +115,19 @@ public class GameScene extends SceneFW {
 
     @Override
     public void dispose() {
-        UtilResourse.explode.dispose();
-        UtilResourse.hit.dispose();
-        UtilResourse.touch.dispose();
-        UtilResourse.gameMusic.dispose();
+        UtilResourse.sExplode.dispose();
+        UtilResourse.sHit.dispose();
+        UtilResourse.sTouch.dispose();
+        UtilResourse.sGameMusic.dispose();
     }
 
     @Override
     public void pause() {
-        UtilResourse.gameMusic.stop();
+        UtilResourse.sGameMusic.stop();
     }
 
     @Override
     public void resume() {
-        UtilResourse.gameMusic.play(true, 0.5f);
+        UtilResourse.sGameMusic.play(true, 0.5f);
     }
 }

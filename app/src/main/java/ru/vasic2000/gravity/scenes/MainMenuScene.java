@@ -17,11 +17,11 @@ public class MainMenuScene extends SceneFW {
     public void update() {
         if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 250, 50)) {
             coreFW.setScene(new GameScene(coreFW));
-            UtilResourse.touch.play(1);
+            UtilResourse.sTouch.play(1);
         }
         if(coreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 50)) {
             coreFW.setScene(new TopDistance(coreFW));
-            UtilResourse.touch.play(1);
+            UtilResourse.sTouch.play(1);
         }
 
     }

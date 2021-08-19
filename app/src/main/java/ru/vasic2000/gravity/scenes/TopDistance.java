@@ -2,8 +2,6 @@ package ru.vasic2000.gravity.scenes;
 
 import android.graphics.Color;
 
-import java.util.SplittableRandom;
-
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.my_framework.CoreFW;
@@ -11,12 +9,12 @@ import ru.vasic2000.my_framework.SceneFW;
 
 public class TopDistance extends SceneFW {
 
-    String[] numbers = new String[5];
+    private String[] mNumbers = new String[5];
 
     public TopDistance(CoreFW coreFW) {
         super(coreFW);
         for (int i = 0; i < 5; i++) {
-            this.numbers[i] = " " + (i+1) + " = " + SettingsGame.distance[i];
+            this.mNumbers[i] = " " + (i+1) + " = " + SettingsGame.distance[i];
         }
     }
 
@@ -32,15 +30,15 @@ public class TopDistance extends SceneFW {
     public void drawing() {
         graficsFW.drawText(coreFW.getString(R.string.txt_top_distance),
                 120, 200, Color.GREEN, 60, null);
-        graficsFW.drawText(String.valueOf(numbers[0]),
+        graficsFW.drawText(String.valueOf(mNumbers[0]),
                 120, 270, Color.YELLOW, 45, null);
-        graficsFW.drawText(String.valueOf(numbers[1]),
+        graficsFW.drawText(String.valueOf(mNumbers[1]),
                 120, 320, Color.YELLOW, 45, null);
-        graficsFW.drawText(String.valueOf(numbers[2]),
+        graficsFW.drawText(String.valueOf(mNumbers[2]),
                 120, 370, Color.YELLOW, 45, null);
-        graficsFW.drawText(String.valueOf(numbers[3]),
+        graficsFW.drawText(String.valueOf(mNumbers[3]),
                 120, 420, Color.YELLOW, 45, null);
-        graficsFW.drawText(String.valueOf(numbers[4]),
+        graficsFW.drawText(String.valueOf(mNumbers[4]),
                 120, 470, Color.YELLOW, 45, null);
 
     }

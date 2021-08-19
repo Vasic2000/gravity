@@ -7,40 +7,43 @@ import ru.vasic2000.my_framework.GraphicsFW;
 
 
 public class EnemyGenerator {
-    private int maxScreenX;
-    private int maxScreenY;
-    private int minScreenX;
-    private int minScreenY;
 
-    public ArrayList<Enemy> enemyArrayList;
+    private int mMaxScreenX;
+    private int mMaxScreenY;
+    private int mMinScreenY;
+
+    private ArrayList<Enemy> mEnemyArrayList;
 
     public EnemyGenerator(int sceneWidth, int sceneHeight, int minScreenY) {
-        this.maxScreenX = sceneWidth;
-        this.maxScreenY = sceneHeight;
-        this.minScreenX = 0;
-        this.minScreenY = minScreenY;
-        enemyArrayList = new ArrayList<>();
+        this.mMaxScreenX = sceneWidth;
+        this.mMaxScreenY = sceneHeight;
+        this.mMinScreenY = minScreenY;
+        mEnemyArrayList = new ArrayList<>();
     }
 
     public void update(double playerSpeed) {
 
-        while(enemyArrayList.size() < 3) {
-            addEnemy(playerSpeed);
+        while(mEnemyArrayList.size() < 3) {
+            addEnemy();
         }
 
-        for (Enemy enemy : enemyArrayList) {
+        for (Enemy enemy : mEnemyArrayList) {
             enemy.update(playerSpeed);
         }
     }
 
 
-    private void addEnemy(double playerSpeed) {
-        enemyArrayList.add(new Enemy(maxScreenX, maxScreenY, minScreenY, 1));
+    private void addEnemy() {
+        mEnemyArrayList.add(new Enemy(mMaxScreenX, mMaxScreenY, mMinScreenY, 1));
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        for (Enemy enemy : enemyArrayList) {
+        for (Enemy enemy : mEnemyArrayList) {
             enemy.drawing(graphicsFW);
         }
+    }
+
+    public ArrayList<Enemy> getEnemyArrayList() {
+        return mEnemyArrayList;
     }
 }

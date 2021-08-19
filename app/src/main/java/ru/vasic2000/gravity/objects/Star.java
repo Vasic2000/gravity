@@ -5,6 +5,10 @@ import ru.vasic2000.my_framework.utils.UtilRandomFW;
 
 public class Star extends ObjectFW {
     public Star(int sceneWidth, int sceneHeight, int minScreenY) {
+        init(sceneWidth, sceneHeight, minScreenY);
+    }
+
+    private void init(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX = sceneWidth;
         this.maxScreenY = sceneHeight;
         this.minScreenX = minScreenY;

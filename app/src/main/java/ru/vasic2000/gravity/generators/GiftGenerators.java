@@ -7,48 +7,52 @@ import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class GiftGenerators {
 
-    Protector protector;
-    UtilTimerDelay protectorTimer;
+    private Protector mProtector;
+    private UtilTimerDelay mProtectorTimer;
 
-    private int maxScreenX;
-    private int maxScreenY;
-    private int minScreenX;
-    private int minScreenY;
+    private int mMaxScreenX;
+    private int mMaxScreenY;
+    private int mMinScreenX;
+    private int mMinScreenY;
 
     public GiftGenerators(int sceneWidth, int sceneHeight, int minScreenY) {
-        this.maxScreenX = sceneWidth;
-        this.maxScreenY = sceneHeight;
-        this.minScreenX = 0;
-        this.minScreenY = minScreenY;
+        init(sceneWidth, sceneHeight, minScreenY);
+    }
 
-        protector = new Protector(maxScreenX, maxScreenY, minScreenY);
+    private void init(int sceneWidth, int sceneHeight, int minScreenY) {
+        this.mMaxScreenX = sceneWidth;
+        this.mMaxScreenY = sceneHeight;
+        this.mMinScreenX = 0;
+        this.mMinScreenY = minScreenY;
 
-        protectorTimer = new UtilTimerDelay();
-        protectorTimer.startTimer();
+        mProtector = new Protector(mMaxScreenX, mMaxScreenY, minScreenY);
+
+        mProtectorTimer = new UtilTimerDelay();
+        mProtectorTimer.startTimer();
     }
 
     public void update(double playerSpeed) {
-        if (protectorTimer.timerDelay(8) && (!MainPlayer.isShieldsOn())) {
-            protector.update(playerSpeed);
-            if (protector.getX() < minScreenX) {
-                protector = null;
-                protector = new Protector(maxScreenX, maxScreenY, minScreenY);
-                protectorTimer.startTimer();
+        if (mProtectorTimer.timerDelay(8) && (!MainPlayer.isShieldsOn())) {
+            mProtector.update(playerSpeed);
+            if (mProtector.getX() < mMinScreenX) {
+                mProtector = null;
+                mProtector = new Protector(mMaxScreenX, mMaxScreenY, mMinScreenY);
+                mProtectorTimer.startTimer();
             }
         }
     }
 
     public void drawing(GraphicsFW graphicsFW) {
-        protector.drawing(graphicsFW);
+        mProtector.drawing(graphicsFW);
     }
 
     public Protector getProtector() {
-        return protector;
+        return mProtector;
     }
 
     public void receiveProtector() {
-        protector = null;
-        protector = new Protector(maxScreenX, maxScreenY, minScreenY);
-        protectorTimer.startTimer();
+        mProtector = null;
+        mProtector = new Protector(mMaxScreenX, mMaxScreenY, mMinScreenY);
+        mProtectorTimer.startTimer();
     }
 }

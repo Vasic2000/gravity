@@ -8,22 +8,22 @@ import ru.vasic2000.my_framework.MusicFW;
 import ru.vasic2000.my_framework.SoundFW;
 
 public class UtilResourse {
-    public static Bitmap textureAtlas;
-    public static Bitmap shieldHitEnamy;
+    public static Bitmap sTextureAtlas;
+    public static Bitmap sShieldHitEnamy;
 
-    public static ArrayList<Bitmap> spritePlayer;
-    public static ArrayList<Bitmap> spritePlayerBoost;
-    public static ArrayList<Bitmap> spriteEnemy;
-    public static ArrayList<Bitmap> spritePlayerExplose;
+    public static ArrayList<Bitmap> sSpritePlayer;
+    public static ArrayList<Bitmap> sSpritePlayerBoost;
+    public static ArrayList<Bitmap> sSpriteEnemy;
+    public static ArrayList<Bitmap> sSpritePlayerExplose;
 
-    public static ArrayList<Bitmap> spritePlayerShieldsOn;
-    public static ArrayList<Bitmap> spritePlayerShieldsBoost;
-    public static ArrayList<Bitmap> spriteProtector;
+    public static ArrayList<Bitmap> sSpritePlayerShieldsOn;
+    public static ArrayList<Bitmap> sSpritePlayerShieldsBoost;
+    public static ArrayList<Bitmap> sSpriteProtector;
 
-    public static MusicFW gameMusic;
+    public static MusicFW sGameMusic;
 
-    public static SoundFW hit;
-    public static SoundFW explode;
-    public static SoundFW touch;
+    public static SoundFW sHit;
+    public static SoundFW sExplode;
+    public static SoundFW sTouch;
 
 }
