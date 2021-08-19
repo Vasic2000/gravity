@@ -3,6 +3,8 @@ package ru.vasic2000.gravity.tasks;
 import android.os.AsyncTask;
 import android.os.Build;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import java.util.ArrayList;
 
 import ru.vasic2000.gravity.R;
@@ -115,6 +117,9 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
                 0,128, 64,64);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             UtilResourse.sMainMenuFont = mCoreFW.getResources().getFont(R.font.roboto_black);
+        } else {
+            UtilResourse.sMainMenuFont = ResourcesCompat.getFont(mCoreFW.getApplicationContext(),
+                    R.font.roboto_black);
         }
     }
 
