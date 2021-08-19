@@ -4,7 +4,7 @@ import android.graphics.Color;
 
 import java.util.ArrayList;
 import ru.vasic2000.gravity.objects.Star;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 
 public class BacgroundGenerator {
     private ArrayList<Star> mStarArrayList = new ArrayList<Star>();

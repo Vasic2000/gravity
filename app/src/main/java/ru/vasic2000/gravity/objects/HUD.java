@@ -3,8 +3,8 @@ package ru.vasic2000.gravity.objects;
 import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
-import ru.vasic2000.my_framework.CoreFW;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.core.CoreFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 
 public class HUD {
     private int mPassedDistaence;

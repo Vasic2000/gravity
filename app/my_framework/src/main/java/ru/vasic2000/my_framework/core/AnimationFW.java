@@ -1,12 +1,12 @@
-package ru.vasic2000.my_framework;
+package ru.vasic2000.my_framework.core;
 
 import android.graphics.Bitmap;
 
 public class AnimationFW {
-    double speedAnimation;
-    int delayIndex;
-    int countFrame;
-    int frames;
+    private double mSpeedAnimation;
+    private int mDelayIndex;
+    private int mCountFrame;
+    private int mFrames;
 
     private Bitmap mSprite;
     private Bitmap mSprite1;
@@ -22,24 +22,24 @@ public class AnimationFW {
 
         mSprite = sprite1;
 
-        this.speedAnimation = speedAnimation;
+        this.mSpeedAnimation = speedAnimation;
         this.mSprite1 = sprite1;
         this.mSprite2 = sprite2;
         this.mSprite3 = sprite3;
         this.mSprite4 = sprite4;
-        frames = 4;
+        mFrames = 4;
     }
 
     public void runAnimation() {
-        delayIndex++;
-        if(delayIndex > speedAnimation) {
-            delayIndex = 0;
+        mDelayIndex++;
+        if(mDelayIndex > mSpeedAnimation) {
+            mDelayIndex = 0;
             nextFrame();
         }
     }
 
     private void nextFrame() {
-        switch (countFrame) {
+        switch (mCountFrame) {
             case 0:
                 mSprite = mSprite1;
                 break;
@@ -57,9 +57,9 @@ public class AnimationFW {
                 break;
         }
 
-        countFrame++;
-        if(countFrame>frames) {
-            countFrame = 0;
+        mCountFrame++;
+        if(mCountFrame > mFrames) {
+            mCountFrame = 0;
         }
     }
 

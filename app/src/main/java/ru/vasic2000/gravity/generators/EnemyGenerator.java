@@ -3,7 +3,7 @@ package ru.vasic2000.gravity.generators;
 import java.util.ArrayList;
 
 import ru.vasic2000.gravity.objects.Enemy;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 
 
 public class EnemyGenerator {

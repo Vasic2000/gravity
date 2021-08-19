@@ -1,4 +1,4 @@
-package ru.vasic2000.my_framework;
+package ru.vasic2000.my_framework.core;
 
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
@@ -7,55 +7,55 @@ import java.io.IOException;
 
 public class MusicFW implements MediaPlayer.OnCompletionListener {
 
-    MediaPlayer mediaPlayer;
-    boolean isSoundPrepeared;
+    private MediaPlayer mMediaPlayer;
+    private boolean mIsSoundPrepeared;
 
     public MusicFW(AssetFileDescriptor assetFileDescriptor) {
-        mediaPlayer = new MediaPlayer();
+        mMediaPlayer = new MediaPlayer();
         try {
-            mediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(),
+            mMediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(),
                     assetFileDescriptor.getLength());
-            mediaPlayer.prepare();
+            mMediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        isSoundPrepeared = true;
-        mediaPlayer.setOnCompletionListener(this);
+        mIsSoundPrepeared = true;
+        mMediaPlayer.setOnCompletionListener(this);
     }
 
     public void play(boolean looping, float volume) {
-        if(!mediaPlayer.isPlaying()) {
+        if(!mMediaPlayer.isPlaying()) {
             synchronized (this) {
-                if(!isSoundPrepeared) {
+                if(!mIsSoundPrepeared) {
                     try {
-                        mediaPlayer.prepare();
+                        mMediaPlayer.prepare();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
-                mediaPlayer.setLooping(looping);
-                mediaPlayer.setVolume(volume, volume);
-                mediaPlayer.start();
+                mMediaPlayer.setLooping(looping);
+                mMediaPlayer.setVolume(volume, volume);
+                mMediaPlayer.start();
             }
         }
     }
 
     public void stop() {
-        mediaPlayer.stop();
+        mMediaPlayer.stop();
         synchronized (this) {
-            isSoundPrepeared = false;
+            mIsSoundPrepeared = false;
         }
     }
 
     public void dispose() {
-        mediaPlayer.stop();
-        mediaPlayer.release();
+        mMediaPlayer.stop();
+        mMediaPlayer.release();
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
         synchronized (this) {
-            isSoundPrepeared = false;
+            mIsSoundPrepeared = false;
         }
     }
 }

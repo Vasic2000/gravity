@@ -1,4 +1,4 @@
-package ru.vasic2000.my_framework;
+package ru.vasic2000.my_framework.core;
 
 import android.media.SoundPool;
 

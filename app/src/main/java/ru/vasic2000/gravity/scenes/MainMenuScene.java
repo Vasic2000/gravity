@@ -4,8 +4,8 @@ import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.CoreFW;
-import ru.vasic2000.my_framework.SceneFW;
+import ru.vasic2000.my_framework.core.CoreFW;
+import ru.vasic2000.my_framework.core.SceneFW;
 
 public class MainMenuScene extends SceneFW {
 
@@ -15,29 +15,32 @@ public class MainMenuScene extends SceneFW {
 
     @Override
     public void update() {
-        if(coreFW.getTouchListenerFW().getTuchUp(20, 300, 250, 50)) {
-            coreFW.setScene(new GameScene(coreFW));
+        if(pCoreFW.getTouchListenerFW().getTuchUp(20, 300, 250, 50)) {
+            pCoreFW.setScene(new GameScene(pCoreFW));
             UtilResourse.sTouch.play(1);
         }
-        if(coreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 50)) {
-            coreFW.setScene(new TopDistance(coreFW));
+        if(pCoreFW.getTouchListenerFW().getTuchUp(20, 350, 250, 50)) {
+            pCoreFW.setScene(new SettingsScene(pCoreFW));
             UtilResourse.sTouch.play(1);
         }
-
+        if(pCoreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 50)) {
+            pCoreFW.setScene(new TopDistance(pCoreFW));
+            UtilResourse.sTouch.play(1);
+        }
     }
 
     @Override
     public void drawing() {
-        graficsFW.clearScene(Color.BLACK);
-        graficsFW.drawText(coreFW.getString(R.string.txt_mainMenu_nameGame),
+        pGraficsFW.clearScene(Color.BLACK);
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_nameGame),
                 100, 100, Color.WHITE, 60, null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_mainMenu_newGame),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_newGame),
                 20, 300, Color.WHITE, 40, null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_mainMenu_settings),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_settings),
                 20, 350, Color.WHITE, 40, null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_mainMenu_results),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_results),
                 20, 400, Color.WHITE, 40, null);
-        graficsFW.drawText(coreFW.getString(R.string.txt_mainMenu_exitGame),
+        pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_exitGame),
                 20, 450, Color.WHITE, 40, null);
     }
 

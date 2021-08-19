@@ -4,9 +4,9 @@ import android.graphics.Rect;
 
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.AnimationFW;
-import ru.vasic2000.my_framework.GraphicsFW;
-import ru.vasic2000.my_framework.ObjectFW;
+import ru.vasic2000.my_framework.core.AnimationFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
+import ru.vasic2000.my_framework.core.ObjectFW;
 import ru.vasic2000.my_framework.utils.UtilRandomFW;
 
 public class Enemy extends ObjectFW {
@@ -19,53 +19,53 @@ public class Enemy extends ObjectFW {
     }
 
     private void init(int maxScreenX, int maxScreenY, int minScreenY) {
-        this.maxScreenX = maxScreenX;
-        this.maxScreenY = maxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight();
-        this.minScreenY = minScreenY;
-        this.minScreenX = -UtilResourse.sSpriteEnemy.get(0).getWidth();
+        this.pMaxScreenX = maxScreenX;
+        this.pMaxScreenY = maxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight();
+        this.pMinScreenY = minScreenY;
+        this.pMinScreenX = -UtilResourse.sSpriteEnemy.get(0).getWidth();
 
-        x = maxScreenX + UtilRandomFW.getGap(0, maxScreenX /3);
-        y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+        pX = maxScreenX + UtilRandomFW.getGap(0, maxScreenX /3);
+        pY = UtilRandomFW.getGap(minScreenY, maxScreenY);
 
-        radius = UtilResourse.sSpriteEnemy.get(0).getWidth() / 4;
+        pRadius = UtilResourse.sSpriteEnemy.get(0).getWidth() / 4;
     }
 
     private void initTypeEnamy(int enemyType) {
         switch (enemyType) {
             case 1 :
-                speed = UtilRandomFW.getGap(1,5);
+                pSpeed = UtilRandomFW.getGap(1,5);
                 mAnimEnemy = new AnimationFW(GameManager.SPEED_ANIMATION, UtilResourse.sSpriteEnemy.get(0),
                         UtilResourse.sSpriteEnemy.get(1),
                         UtilResourse.sSpriteEnemy.get(2),
                         UtilResourse.sSpriteEnemy.get(3));
                 break;
             case 2 :
-                speed = UtilRandomFW.getGap(4,9);
+                pSpeed = UtilRandomFW.getGap(4,9);
                 break;
         }
     }
 
     public void update(double playerSpeed) {
-        x -= speed;
-        x -= playerSpeed;
-        if(x < minScreenX) {
-            x = maxScreenX + UtilRandomFW.getGap(0, maxScreenX / 3);
-            y = UtilRandomFW.getGap(minScreenY, maxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight());
-            speed = UtilRandomFW.getGap(1,5);
+        pX -= pSpeed;
+        pX -= playerSpeed;
+        if(pX < pMinScreenX) {
+            pX = pMaxScreenX + UtilRandomFW.getGap(0, pMaxScreenX / 3);
+            pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight());
+            pSpeed = UtilRandomFW.getGap(1,5);
         }
         mAnimEnemy.runAnimation();
-        hitBox = new Rect(x,y,
+        pHitBox = new Rect(pX, pY,
                 UtilResourse.sSpriteEnemy.get(0).getWidth(),
                 UtilResourse.sSpriteEnemy.get(0).getWidth());
     }
 
     public void drawing(GraphicsFW graphicsFW){
-        mAnimEnemy.drawAnimation(graphicsFW, x, y);
+        mAnimEnemy.drawAnimation(graphicsFW, pX, pY);
     }
 
     public void hitPlayer() {
-        x = maxScreenX + UtilRandomFW.getGap(0, maxScreenX / 3);
-        y = UtilRandomFW.getGap(minScreenY, maxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight());
-        speed = UtilRandomFW.getGap(1,5);
+        pX = pMaxScreenX + UtilRandomFW.getGap(0, pMaxScreenX / 3);
+        pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight());
+        pSpeed = UtilRandomFW.getGap(1,5);
     }
 }

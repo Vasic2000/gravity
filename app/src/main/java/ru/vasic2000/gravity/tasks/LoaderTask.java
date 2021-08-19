@@ -8,8 +8,8 @@ import ru.vasic2000.gravity.interfaces.TaskCompleteListener;
 import ru.vasic2000.gravity.scenes.LoaderResourcesScene;
 import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.CoreFW;
-import ru.vasic2000.my_framework.GraphicsFW;
+import ru.vasic2000.my_framework.core.CoreFW;
+import ru.vasic2000.my_framework.core.GraphicsFW;
 
 public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     private TaskCompleteListener mTaskCompleteListener;
