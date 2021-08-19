@@ -5,6 +5,7 @@ import android.graphics.Color;
 import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.interfaces.TaskCompleteListener;
 import ru.vasic2000.gravity.tasks.LoaderTask;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.SceneFW;
 
@@ -33,7 +34,7 @@ public class LoaderResourcesScene extends SceneFW implements TaskCompleteListene
     public void drawing() {
         pCoreFW.getGraphicsFW().clearScene(Color.BLACK);
         pCoreFW.getGraphicsFW().drawText(pCoreFW.getString(R.string.loading),
-                100,100, Color.GREEN, 50, null);
+                100,100, Color.GREEN, 50, UtilResourse.sMainMenuFont);
         pCoreFW.getGraphicsFW().drawLine(0, 500, mProgressLoader, 500, Color.GREEN);
     }
 

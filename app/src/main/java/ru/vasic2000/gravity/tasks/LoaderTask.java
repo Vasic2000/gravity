@@ -1,9 +1,11 @@
 package ru.vasic2000.gravity.tasks;
 
 import android.os.AsyncTask;
+import android.os.Build;
 
 import java.util.ArrayList;
 
+import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.interfaces.TaskCompleteListener;
 import ru.vasic2000.gravity.scenes.LoaderResourcesScene;
 import ru.vasic2000.gravity.utilites.SettingsGame;
@@ -48,21 +50,21 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
         publishProgress(100);
         loadSpritePlayer(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(250);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(200);
         loadSpriteEnemy(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(200);
+            Thread.sleep(150);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         publishProgress(300);
-        loadShieldHitEnemy(mCoreFW.getGraphicsFW());
+        loadOther(mCoreFW.getGraphicsFW());
         try {
-            Thread.sleep(150);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -108,9 +110,12 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
         SettingsGame.loadScore(coreFW);
     }
 
-    private void loadShieldHitEnemy(GraphicsFW graphicsFW) {
+    private void loadOther(GraphicsFW graphicsFW) {
         UtilResourse.sShieldHitEnamy = graphicsFW.newSprite(UtilResourse.sTextureAtlas,
                 0,128, 64,64);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            UtilResourse.sMainMenuFont = mCoreFW.getResources().getFont(R.font.roboto_black);
+        }
     }
 
     private void loadTexture(GraphicsFW graphicsFW) {

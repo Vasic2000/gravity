@@ -23,8 +23,12 @@ public class MainMenuScene extends SceneFW {
             pCoreFW.setScene(new SettingsScene(pCoreFW));
             UtilResourse.sTouch.play(1);
         }
-        if(pCoreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 50)) {
+        if(pCoreFW.getTouchListenerFW().getTuchUp(20, 400, 145, 35)) {
             pCoreFW.setScene(new TopDistance(pCoreFW));
+            UtilResourse.sTouch.play(1);
+        }
+        if(pCoreFW.getTouchListenerFW().getTuchUp(20, 450, 120, 35)) {
+            pCoreFW.setScene(new ExitScene(pCoreFW));
             UtilResourse.sTouch.play(1);
         }
     }
@@ -33,15 +37,15 @@ public class MainMenuScene extends SceneFW {
     public void drawing() {
         pGraficsFW.clearScene(Color.BLACK);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_nameGame),
-                100, 100, Color.WHITE, 60, null);
+                100, 100, Color.WHITE, 60, UtilResourse.sMainMenuFont);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_newGame),
-                20, 300, Color.WHITE, 40, null);
+                20, 300, Color.WHITE, 40, UtilResourse.sMainMenuFont);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_settings),
-                20, 350, Color.WHITE, 40, null);
+                20, 350, Color.WHITE, 40, UtilResourse.sMainMenuFont);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_results),
-                20, 400, Color.WHITE, 40, null);
+                20, 400, Color.WHITE, 40, UtilResourse.sMainMenuFont);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_mainMenu_exitGame),
-                20, 450, Color.WHITE, 40, null);
+                20, 450, Color.WHITE, 40, UtilResourse.sMainMenuFont);
     }
 
     @Override

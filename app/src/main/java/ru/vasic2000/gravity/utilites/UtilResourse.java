@@ -1,6 +1,7 @@
 package ru.vasic2000.gravity.utilites;
 
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 
 import java.util.ArrayList;
 
@@ -25,5 +26,7 @@ public class UtilResourse {
     public static SoundFW sHit;
     public static SoundFW sExplode;
     public static SoundFW sTouch;
+
+    public static Typeface sMainMenuFont;
 
 }

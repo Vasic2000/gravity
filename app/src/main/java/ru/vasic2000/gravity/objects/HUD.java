@@ -3,6 +3,7 @@ package ru.vasic2000.gravity.objects;
 import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.GraphicsFW;
 
@@ -31,11 +32,11 @@ public class HUD {
     public void drawing(GraphicsFW graphicsFW) {
         graphicsFW.drawLine(0, HUD_HEIGHT, graphicsFW.getWidthFrameBuffer(), HUD_HEIGHT, Color.WHITE);
         graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_passedDistaence) + mPassedDistaence,
-                10, 30, Color.YELLOW, 25, null);
+                10, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
         graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_currentPlayerSpeed) + String.format("%.2f", mCurrentPlayerSpeed),
-                350, 30, Color.YELLOW, 25, null);
+                350, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
         graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_currentPlayerShields) + mCurrentPlayerShields,
-                600, 30, Color.YELLOW, 25, null);
+                600, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
     }
 
     public int getHUD_HEIGHT() {
