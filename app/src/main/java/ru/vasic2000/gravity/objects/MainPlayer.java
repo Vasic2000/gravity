@@ -94,9 +94,10 @@ public class MainPlayer extends ObjectFW {
             stopBoosting();
         }
 
-        if(timerShieldOn.timerDelay(5)) {
-            shieldsOn = false;
+        if (isGameOver) {
+            animMainPlayerExplose.runAnimation();
         }
+
 
         if (boosting)
             speed += 0.1;
