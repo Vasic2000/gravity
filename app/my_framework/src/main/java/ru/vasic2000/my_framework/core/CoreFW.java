@@ -3,6 +3,7 @@ package ru.vasic2000.my_framework.core;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
@@ -27,6 +28,8 @@ public class CoreFW extends AppCompatActivity {
 
     private SharedPreferences mSharedPreferences;
 
+    private boolean mIsKeyBackPressed;
+
     private final String SETTINGS = "settings";
 
     @Override
@@ -46,6 +49,8 @@ public class CoreFW extends AppCompatActivity {
         mSceneHeight = (float) FRAME_BUFFER_HEIGHT / getResources().getDisplayMetrics().heightPixels;
 
         mAudioFW = new AudioFW(this);
+
+        mIsKeyBackPressed = false;
 
         mLoopFW = new LoopFW(this, mFrameBuffer);
         mGraphicsFW = new GraphicsFW(getAssets(), mFrameBuffer);
@@ -90,6 +95,16 @@ public class CoreFW extends AppCompatActivity {
         this.mSceneFW = sceneFW;
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            mIsKeyBackPressed = true;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public SceneFW getCurrentScene() {
         return mSceneFW;
     }
@@ -100,6 +115,14 @@ public class CoreFW extends AppCompatActivity {
 
     public SharedPreferences getSharedPreferences() {
         return mSharedPreferences;
+    }
+
+    public boolean isKeyBackPressed() {
+        return mIsKeyBackPressed;
+    }
+
+    public void setKeyBackPressed(boolean mIsKeyBackPressed) {
+        this.mIsKeyBackPressed = mIsKeyBackPressed;
     }
 
     public AudioFW getAudioFW() {

@@ -3,6 +3,7 @@ package ru.vasic2000.gravity.scenes;
 import android.graphics.Color;
 
 import ru.vasic2000.gravity.R;
+import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.SceneFW;
 
@@ -14,7 +15,28 @@ class SettingsScene extends SceneFW {
 
     @Override
     public void update() {
+        if (pCoreFW.isKeyBackPressed()) {
+            pCoreFW.setKeyBackPressed(false);
+            pCoreFW.setScene(new MainMenuScene(pCoreFW));
+        }
 
+        if (pCoreFW.getTouchListenerFW().getTuchUp(400, 300, 100, 55)) {
+            SettingsGame.sSoundOn = !SettingsGame.sSoundOn;
+            SettingsGame.saveScore(pCoreFW);
+        }
+
+        if (pCoreFW.getTouchListenerFW().getTuchUp(400, 400, 100, 55)) {
+            SettingsGame.sMusicOn = !SettingsGame.sMusicOn;
+            SettingsGame.saveScore(pCoreFW);
+        }
+
+        if (pCoreFW.getTouchListenerFW().getTuchUp(0, 200, 800, 200) ||
+                pCoreFW.getTouchListenerFW().getTuchUp(0, 0, 800, 200) ||
+                pCoreFW.getTouchListenerFW().getTuchUp(0, 600, 800, 600) ||
+                pCoreFW.getTouchListenerFW().getTuchUp(500, 600, 800, 600)
+        ) {
+            pCoreFW.setScene(new MainMenuScene(pCoreFW));
+        }
     }
 
     @Override
@@ -27,10 +49,16 @@ class SettingsScene extends SceneFW {
         pCoreFW.getGraphicsFW().drawText(pCoreFW.getString(R.string.txt_settingScene_music),
                 250, 400, Color.GREEN, 35, null);
 
-        pCoreFW.getGraphicsFW().drawText("ON",
-                400, 300, Color.GREEN, 35, null);
-        pCoreFW.getGraphicsFW().drawText("ON",
-                400, 400, Color.GREEN, 35, null);
+        if (SettingsGame.sSoundOn)
+            pCoreFW.getGraphicsFW().drawText("ON",
+                    400, 300, Color.GREEN, 35, null);
+        else pCoreFW.getGraphicsFW().drawText("OFF",
+                400, 300, Color.GRAY, 35, null);
+        if (SettingsGame.sMusicOn)
+            pCoreFW.getGraphicsFW().drawText("ON",
+                    400, 400, Color.GREEN, 35, null);
+        else pCoreFW.getGraphicsFW().drawText("OFF",
+                400, 400, Color.GRAY, 35, null);
     }
 
     @Override

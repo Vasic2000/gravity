@@ -25,8 +25,6 @@ public class GameScene extends SceneFW {
         super(coreFW);
         mGameState = GameState.READY;
         mGameManager = new GameManager(coreFW, pSceneWidth, pSceneHeight);
-
-        UtilResourse.sGameMusic.play(true, 0.5f);
     }
 
     @Override
@@ -83,11 +81,24 @@ public class GameScene extends SceneFW {
 
     private void updateStateRuning() {
         mGameManager.update();
+        if (GameManager.gameOver) {
+            mGameState = GameState.GAME_OVER;
+        }
+        if(pCoreFW.isKeyBackPressed()) {
+            mGameState = GameState.PAUSE;
+        }
+        pCoreFW.setKeyBackPressed(false);
     }
 
     private void drawingGamePause() {
+        pCoreFW.getGraphicsFW().clearScene(Color.BLACK);
+        pCoreFW.getGraphicsFW().drawText("PAUSE", 300,300, Color.GREEN, 50, null);
     }
+
     private void updateStatePause() {
+        if(pCoreFW.getTouchListenerFW().getTuchUp(0, pSceneHeight, pSceneWidth, pSceneHeight)) {
+            mGameState = GameState.RUNING;
+        }
     }
 
     private void drawingGameOver() {
@@ -128,6 +139,8 @@ public class GameScene extends SceneFW {
 
     @Override
     public void resume() {
-        UtilResourse.sGameMusic.play(true, 0.5f);
+        if(SettingsGame.sMusicOn) {
+            UtilResourse.sGameMusic.play(true, 0.5f);
+        }
     }
 }
