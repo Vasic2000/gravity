@@ -6,6 +6,7 @@ import ru.vasic2000.gravity.generators.GiftGenerators;
 import ru.vasic2000.gravity.objects.Enemy;
 import ru.vasic2000.gravity.objects.HUD;
 import ru.vasic2000.gravity.objects.MainPlayer;
+import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.utils.UtilCollisionsDetect;
 import ru.vasic2000.my_framework.core.CoreFW;
@@ -60,7 +61,9 @@ public class GameManager {
     private void checkHit() {
         for (Enemy enemy : mEnemyGenerator.getEnemyArrayList()) {
             if (UtilCollisionsDetect.collisionDetect(mMainPlayer, enemy)) {
-                UtilResourse.sHit.play(1);
+                if(SettingsGame.sSoundOn) {
+                    UtilResourse.sHit.play(1);
+                }
                 mMainPlayer.hitEnemy();
                 enemy.hitPlayer();
             }

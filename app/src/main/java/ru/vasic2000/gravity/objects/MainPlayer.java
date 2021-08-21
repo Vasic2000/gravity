@@ -3,6 +3,7 @@ package ru.vasic2000.gravity.objects;
 import android.graphics.Rect;
 
 import ru.vasic2000.gravity.classes.GameManager;
+import ru.vasic2000.gravity.utilites.SettingsGame;
 import ru.vasic2000.my_framework.core.AnimationFW;
 import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.GraphicsFW;
@@ -177,7 +178,9 @@ public class MainPlayer extends ObjectFW {
         if(!sShieldsOn) {
             mPlayerShields--;
             if (mPlayerShields < 0) {
-                UtilResourse.sExplode.play(3);
+                if(SettingsGame.sSoundOn) {
+                    UtilResourse.sExplode.play(3);
+                }
                 mIsGameOver = true;
                 mTimerGameOwerON.startTimer();
             }
