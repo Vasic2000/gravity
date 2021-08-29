@@ -2,7 +2,7 @@ package ru.vasic2000.my_framework.core;
 
 import android.graphics.Bitmap;
 
-public class AnimationFW {
+public class Animation_4_Frames {
     private double mSpeedAnimation;
     private int mDelayIndex;
     private int mCountFrame;
@@ -14,11 +14,11 @@ public class AnimationFW {
     private Bitmap mSprite3;
     private Bitmap mSprite4;
 
-    public AnimationFW(double speedAnimation,
-                       Bitmap sprite1,
-                       Bitmap sprite2,
-                       Bitmap sprite3,
-                       Bitmap sprite4) {
+    public Animation_4_Frames(double speedAnimation,
+                              Bitmap sprite1,
+                              Bitmap sprite2,
+                              Bitmap sprite3,
+                              Bitmap sprite4) {
 
         mSprite = sprite1;
 
@@ -55,6 +55,7 @@ public class AnimationFW {
             case 3:
                 mSprite = mSprite4;
                 break;
+
         }
 
         mCountFrame++;

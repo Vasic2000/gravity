@@ -4,7 +4,7 @@ import android.graphics.Rect;
 
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.SettingsGame;
-import ru.vasic2000.my_framework.core.AnimationFW;
+import ru.vasic2000.my_framework.core.Animation_4_Frames;
 import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.GraphicsFW;
 import ru.vasic2000.my_framework.core.ObjectFW;
@@ -16,11 +16,11 @@ public class MainPlayer extends ObjectFW {
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
 
-    private AnimationFW mAnimMainPlayer;
-    private AnimationFW mAnimMainPlayerBoost;
-    private AnimationFW mAnimMainPlayerExplose;
-    private AnimationFW mAnimMainPlayerShieldsOn;
-    private AnimationFW mAnimMainPlayerShieldsBoostOn;
+    private Animation_4_Frames mAnimMainPlayer;
+    private Animation_4_Frames mAnimMainPlayerBoost;
+    private Animation_4_Frames mAnimMainPlayerExplose;
+    private Animation_4_Frames mAnimMainPlayerShieldsOn;
+    private Animation_4_Frames mAnimMainPlayerShieldsBoostOn;
 
     private CoreFW mCoreFW;
 
@@ -65,23 +65,23 @@ public class MainPlayer extends ObjectFW {
     }
 
     private void initAnimations() {
-        mAnimMainPlayer = new AnimationFW(pSpeed, UtilResourse.sSpritePlayer.get(0),
+        mAnimMainPlayer = new Animation_4_Frames(pSpeed, UtilResourse.sSpritePlayer.get(0),
                 UtilResourse.sSpritePlayer.get(1),
                 UtilResourse.sSpritePlayer.get(2),
                 UtilResourse.sSpritePlayer.get(3));
-        mAnimMainPlayerBoost = new AnimationFW(pSpeed, UtilResourse.sSpritePlayerBoost.get(0),
+        mAnimMainPlayerBoost = new Animation_4_Frames(pSpeed, UtilResourse.sSpritePlayerBoost.get(0),
                 UtilResourse.sSpritePlayerBoost.get(1),
                 UtilResourse.sSpritePlayerBoost.get(2),
                 UtilResourse.sSpritePlayerBoost.get(3));
-        mAnimMainPlayerExplose = new AnimationFW(pSpeed, UtilResourse.sSpritePlayerExplose.get(0),
+        mAnimMainPlayerExplose = new Animation_4_Frames(pSpeed, UtilResourse.sSpritePlayerExplose.get(0),
                 UtilResourse.sSpritePlayerExplose.get(1),
                 UtilResourse.sSpritePlayerExplose.get(2),
                 UtilResourse.sSpritePlayerExplose.get(3));
-        mAnimMainPlayerShieldsOn = new AnimationFW(pSpeed, UtilResourse.sSpritePlayerShieldsOn.get(0),
+        mAnimMainPlayerShieldsOn = new Animation_4_Frames(pSpeed, UtilResourse.sSpritePlayerShieldsOn.get(0),
                 UtilResourse.sSpritePlayerShieldsOn.get(1),
                 UtilResourse.sSpritePlayerShieldsOn.get(2),
                 UtilResourse.sSpritePlayerShieldsOn.get(3));
-        mAnimMainPlayerShieldsBoostOn = new AnimationFW(pSpeed, UtilResourse.sSpritePlayerShieldsBoost.get(0),
+        mAnimMainPlayerShieldsBoostOn = new Animation_4_Frames(pSpeed, UtilResourse.sSpritePlayerShieldsBoost.get(0),
                 UtilResourse.sSpritePlayerShieldsBoost.get(1),
                 UtilResourse.sSpritePlayerShieldsBoost.get(2),
                 UtilResourse.sSpritePlayerShieldsBoost.get(3));

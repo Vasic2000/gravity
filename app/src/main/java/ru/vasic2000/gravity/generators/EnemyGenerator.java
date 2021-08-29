@@ -32,7 +32,6 @@ public class EnemyGenerator {
         }
     }
 
-
     private void addEnemy() {
         mEnemyArrayList.add(new Enemy(mMaxScreenX, mMaxScreenY, mMinScreenY, 1));
     }
