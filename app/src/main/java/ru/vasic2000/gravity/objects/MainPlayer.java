@@ -44,7 +44,7 @@ public class MainPlayer extends ObjectFW {
     private void init(CoreFW coreFW, int maxScreenX, int maxScreenY, int minScreenY) {
         pX = 20;
         pY = 200;
-        pSpeed = GameManager.SPEED_ANIMATION;
+        pSpeed = (int) GameManager.SPEED_ANIMATION/1.5;
         mPlayerShields = 3;
 
         mBoosting = false;
