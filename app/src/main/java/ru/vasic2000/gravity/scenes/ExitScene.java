@@ -1,5 +1,7 @@
 package ru.vasic2000.gravity.scenes;
 
+import static java.lang.System.exit;
+
 import android.graphics.Color;
 
 import ru.vasic2000.gravity.utilites.UtilResourse;
@@ -15,8 +17,9 @@ class ExitScene extends SceneFW {
     @Override
     public void update() {
         if(pCoreFW.getTouchListenerFW().getTuchUp(150,300,100,50)) {
-            pCoreFW.finish();
             UtilResourse.sTouch.play(1);
+            pCoreFW.finish();
+            exit(1);
         }
         if(pCoreFW.getTouchListenerFW().getTuchUp(350,300,100,50)) {
             pCoreFW.setScene(new MainMenuScene(pCoreFW));

@@ -10,6 +10,7 @@ import ru.vasic2000.my_framework.core.SoundFW;
 
 public class UtilResourse {
     public static Bitmap sTextureAtlas;
+    public static Bitmap sTextureAtlas2;
     public static Bitmap sShieldHitEnamy;
 
     public static ArrayList<Bitmap> sSpritePlayer;

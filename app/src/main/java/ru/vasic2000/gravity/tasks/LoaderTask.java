@@ -113,7 +113,7 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     }
 
     private void loadOther(GraphicsFW graphicsFW) {
-        UtilResourse.sShieldHitEnamy = graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sShieldHitEnamy = graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 0,128, 64,64);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             UtilResourse.sMainMenuFont = mCoreFW.getResources().getFont(R.font.roboto_black);
@@ -125,6 +125,7 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
     private void loadTexture(GraphicsFW graphicsFW) {
         UtilResourse.sTextureAtlas = graphicsFW.newTexture("texture_atlas.png");
+        UtilResourse.sTextureAtlas2 = graphicsFW.newTexture("texture_atlas2.png");
     }
 
     private void loadSpritePlayer(GraphicsFW graphicsFW) {
@@ -132,67 +133,77 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
         UtilResourse.sSpritePlayerBoost = new ArrayList<>();
         UtilResourse.sSpritePlayerExplose = new ArrayList<>();
 
-        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 0, 0, 64, 64));
-        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 64, 0, 64, 64));
-        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 128, 0, 64, 64));
-        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayer.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 192, 0, 64, 64));
 
-        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 0, 64, 64, 64));
-        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 64, 64, 64, 64));
-        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 128, 64, 64, 64));
-        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 192, 64, 64, 64));
 
-        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 256, 256, 64, 64));
-        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 320, 256, 64, 64));
-        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 384, 256, 64, 64));
-        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerExplose.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 448, 256, 64, 64));
 
     }
 
     private void loadSpriteEnemy(GraphicsFW graphicsFW) {
         UtilResourse.sSpriteEnemy = new ArrayList<>();
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
-                256, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
-                320, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
-                384, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
-                448, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                512, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                576, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                640, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                704, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                768, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                704, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                640, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                576, 0, 64, 64));
+        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                512, 0, 64, 64));
     }
 
     private void loadSpritePlayerShieldsOn(GraphicsFW graphicsFW) {
 
         UtilResourse.sSpritePlayerShieldsOn = new ArrayList<>();
-        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 0, 128, 64, 64));
-        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 64, 128, 64, 64));
-        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 128, 128, 64, 64));
-        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsOn.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 192, 128, 64, 64));
 
         UtilResourse.sSpritePlayerShieldsBoost = new ArrayList<>();
-        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 0, 192, 64, 64));
-        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 64, 192, 64, 64));
-        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 128, 192, 64, 64));
-        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpritePlayerShieldsBoost.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 192, 192, 64, 64));
     }
 

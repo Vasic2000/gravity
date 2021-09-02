@@ -1,17 +1,19 @@
 package ru.vasic2000.gravity.objects;
 
+import static ru.vasic2000.gravity.classes.GameManager.SPEED_ANIMATION;
+
 import android.graphics.Rect;
 
-import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.core.AnimationFW;
+import ru.vasic2000.my_framework.core.Animation_4_Frames;
+import ru.vasic2000.my_framework.core.Animation_9_Frames;
 import ru.vasic2000.my_framework.core.GraphicsFW;
 import ru.vasic2000.my_framework.core.ObjectFW;
 import ru.vasic2000.my_framework.utils.UtilRandomFW;
 
 public class Enemy extends ObjectFW {
 
-    private AnimationFW mAnimEnemy;
+    private Animation_9_Frames mAnimEnemy;
 
     public Enemy(int maxScreenX, int maxScreenY, int minScreenY, int enemyType) {
         init(maxScreenX, maxScreenY, minScreenY);
@@ -34,10 +36,15 @@ public class Enemy extends ObjectFW {
         switch (enemyType) {
             case 1 :
                 pSpeed = UtilRandomFW.getGap(1,5);
-                mAnimEnemy = new AnimationFW(GameManager.SPEED_ANIMATION, UtilResourse.sSpriteEnemy.get(0),
+                mAnimEnemy = new Animation_9_Frames(SPEED_ANIMATION, UtilResourse.sSpriteEnemy.get(0),
                         UtilResourse.sSpriteEnemy.get(1),
                         UtilResourse.sSpriteEnemy.get(2),
-                        UtilResourse.sSpriteEnemy.get(3));
+                        UtilResourse.sSpriteEnemy.get(3),
+                        UtilResourse.sSpriteEnemy.get(4),
+                        UtilResourse.sSpriteEnemy.get(5),
+                        UtilResourse.sSpriteEnemy.get(6),
+                        UtilResourse.sSpriteEnemy.get(7),
+                        UtilResourse.sSpriteEnemy.get(8));
                 break;
             case 2 :
                 pSpeed = UtilRandomFW.getGap(4,9);

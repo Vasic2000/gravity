@@ -4,14 +4,14 @@ import android.graphics.Rect;
 
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.UtilResourse;
-import ru.vasic2000.my_framework.core.AnimationFW;
+import ru.vasic2000.my_framework.core.Animation_4_Frames;
 import ru.vasic2000.my_framework.core.GraphicsFW;
 import ru.vasic2000.my_framework.core.ObjectFW;
 import ru.vasic2000.my_framework.utils.UtilRandomFW;
 
 public class Protector extends ObjectFW {
 
-    private AnimationFW mAnimProtector;
+    private Animation_4_Frames mAnimProtector;
 
     public Protector(int maxScreenX, int maxScreenY, int minScreenY) {
         init(maxScreenX, maxScreenY, minScreenY);
@@ -20,7 +20,7 @@ public class Protector extends ObjectFW {
                 UtilResourse.sSpriteProtector.get(0).getWidth(),
                 UtilResourse.sSpriteProtector.get(0).getHeight());
 
-        mAnimProtector = new AnimationFW(GameManager.SPEED_ANIMATION, UtilResourse.sSpriteProtector.get(0),
+        mAnimProtector = new Animation_4_Frames(GameManager.SPEED_ANIMATION, UtilResourse.sSpriteProtector.get(0),
                 UtilResourse.sSpriteProtector.get(1),
                 UtilResourse.sSpriteProtector.get(2),
                 UtilResourse.sSpriteProtector.get(3));
