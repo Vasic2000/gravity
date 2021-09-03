@@ -15,6 +15,7 @@ public class MainPlayer extends ObjectFW {
     private final int GRAVITY = -3;
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
+    private final int PLAYER_SHIELDS = 5;
 
     private Animation_4_Frames mAnimMainPlayer;
     private Animation_4_Frames mAnimMainPlayerBoost;
@@ -45,7 +46,7 @@ public class MainPlayer extends ObjectFW {
         pX = 20;
         pY = 200;
         pSpeed = (int) GameManager.SPEED_ANIMATION/1.5;
-        mPlayerShields = 150;
+        mPlayerShields = PLAYER_SHIELDS;
 
         mBoosting = false;
         mHitEnemy = false;

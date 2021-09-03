@@ -21,9 +21,9 @@ public class Enemy extends ObjectFW {
 
     private void init(int maxScreenX, int maxScreenY, int minScreenY) {
         this.pMaxScreenX = maxScreenX;
-        this.pMaxScreenY = maxScreenY - UtilResourse.sSpriteEnemy1.get(0).getHeight();
+        this.pMaxScreenY = maxScreenY;
         this.pMinScreenY = minScreenY;
-        this.pMinScreenX = -UtilResourse.sSpriteEnemy1.get(0).getWidth();
+        this.pMinScreenX = - UtilResourse.sSpriteEnemy1.get(0).getWidth();
 
         pX = maxScreenX + UtilRandomFW.getGap(0, maxScreenX /3);
         pY = UtilRandomFW.getGap(minScreenY, maxScreenY);

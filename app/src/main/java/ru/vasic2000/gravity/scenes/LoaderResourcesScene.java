@@ -56,5 +56,4 @@ public class LoaderResourcesScene extends SceneFW implements TaskCompleteListene
     public static void setmProgressLoader(int mProgressLoader) {
         LoaderResourcesScene.mProgressLoader = mProgressLoader;
     }
-
 }

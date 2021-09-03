@@ -29,7 +29,7 @@ public class EnemyGenerator {
             addEnemy();
         }
 
-        if((mPassedDistance / (2000 * mEnemyArrayList.size())) > 1) {
+        if((mEnemyArrayList.size() < 10) && (mPassedDistance / (2000 * mEnemyArrayList.size())) > 1) {
                 addEnemy();
         }
 
