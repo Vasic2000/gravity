@@ -43,7 +43,7 @@ public class GameManager {
     }
 
     public void update() {
-        updateObjects();
+        updateObjects(mPassedDistaence);
         mPassedDistaence += mMainPlayer.getPlayerSpeed();
         int mCurrentPlayerShields = mMainPlayer.getPlayerShields();
         double mCurrentPlayerSpeed = mMainPlayer.getPlayerSpeed();
@@ -51,10 +51,10 @@ public class GameManager {
         checkHit();
     }
 
-    private void updateObjects() {
+    private void updateObjects(int mPassedDistaence) {
         mMainPlayer.update();
         mBacgroundGenerator.update(mMainPlayer.getPlayerSpeed());
-        mEnemyGenerator.update(mMainPlayer.getPlayerSpeed());
+        mEnemyGenerator.update(mMainPlayer.getPlayerSpeed(), mPassedDistaence);
         mGiftGenerators.update(mMainPlayer.getPlayerSpeed());
     }
 
@@ -65,7 +65,7 @@ public class GameManager {
                     UtilResourse.sHit.play(1);
                 }
                 mMainPlayer.hitEnemy();
-                enemy.hitPlayer();
+                enemy.hitPlayer(mPassedDistaence);
             }
             if (UtilCollisionsDetect.collisionDetect(mMainPlayer, mGiftGenerators.getProtector())) {
                 takeProtector();

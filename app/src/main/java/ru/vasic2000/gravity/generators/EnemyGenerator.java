@@ -3,7 +3,9 @@ package ru.vasic2000.gravity.generators;
 import java.util.ArrayList;
 
 import ru.vasic2000.gravity.objects.Enemy;
+import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.core.GraphicsFW;
+import ru.vasic2000.my_framework.utils.UtilRandomFW;
 
 
 public class EnemyGenerator {
@@ -21,19 +23,24 @@ public class EnemyGenerator {
         mEnemyArrayList = new ArrayList<>();
     }
 
-    public void update(double playerSpeed) {
-
-        while(mEnemyArrayList.size() < 3) {
+    public void update(double playerSpeed, int mPassedDistance) {
+        if(mEnemyArrayList.size() == 0) {
+            addEnemy();
             addEnemy();
         }
 
+        if((mPassedDistance / (2000 * mEnemyArrayList.size())) > 1) {
+                addEnemy();
+        }
+
         for (Enemy enemy : mEnemyArrayList) {
-            enemy.update(playerSpeed);
+            enemy.update(playerSpeed, mPassedDistance);
         }
     }
 
     private void addEnemy() {
-        mEnemyArrayList.add(new Enemy(mMaxScreenX, mMaxScreenY, mMinScreenY, 1));
+            mEnemyArrayList.add(new Enemy(mMaxScreenX,
+                    mMaxScreenY, mMinScreenY, 1));
     }
 
     public void drawing(GraphicsFW graphicsFW) {

@@ -45,7 +45,7 @@ public class MainPlayer extends ObjectFW {
         pX = 20;
         pY = 200;
         pSpeed = (int) GameManager.SPEED_ANIMATION/1.5;
-        mPlayerShields = 3;
+        mPlayerShields = 150;
 
         mBoosting = false;
         mHitEnemy = false;
