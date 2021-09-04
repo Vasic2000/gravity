@@ -15,7 +15,9 @@ public class UtilResourse {
 
     public static ArrayList<Bitmap> sSpritePlayer;
     public static ArrayList<Bitmap> sSpritePlayerBoost;
-    public static ArrayList<Bitmap> sSpriteEnemy;
+    public static ArrayList<Bitmap> sSpriteEnemy1;
+    public static ArrayList<Bitmap> sSpriteEnemy2;
+    public static ArrayList<Bitmap> sSpriteEnemy3;
     public static ArrayList<Bitmap> sSpritePlayerExplose;
 
     public static ArrayList<Bitmap> sSpritePlayerShieldsOn;
@@ -23,7 +25,9 @@ public class UtilResourse {
     public static ArrayList<Bitmap> sSpriteProtector;
 
     public static MusicFW sGameMusic;
+    public static MusicFW sSchieldMusic;
 
+    public static SoundFW sLooseSound;
     public static SoundFW sHit;
     public static SoundFW sExplode;
     public static SoundFW sTouch;

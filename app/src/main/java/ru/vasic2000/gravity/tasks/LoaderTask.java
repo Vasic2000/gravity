@@ -44,65 +44,68 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
     private void loaderAssets() {
         loadTexture(mCoreFW.getGraphicsFW());
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(200);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(100);
         loadSpritePlayer(mCoreFW.getGraphicsFW());
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(200);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(200);
         loadSpriteEnemy(mCoreFW.getGraphicsFW());
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(150);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(300);
         loadOther(mCoreFW.getGraphicsFW());
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(200);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(400);
         loadSpritePlayerShieldsOn(mCoreFW.getGraphicsFW());
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(150);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(500);
         loadGifts(mCoreFW.getGraphicsFW());
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(300);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(600);
         loadAudio(mCoreFW);
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(150);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(700);
         loadScore(mCoreFW);
-        try {
-            Thread.sleep(150);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(150);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         publishProgress(800);
     }
 
     private void loadAudio(CoreFW coreFW) {
         UtilResourse.sGameMusic = coreFW.getAudioFW().newMusic("music.mp3");
+        UtilResourse.sSchieldMusic = coreFW.getAudioFW().newMusic("schield2.mp3");
+
+        UtilResourse.sLooseSound = coreFW.getAudioFW().newSound("loose.mp3");
         UtilResourse.sHit = coreFW.getAudioFW().newSound("hit.ogg");
         UtilResourse.sExplode = coreFW.getAudioFW().newSound("explode.ogg");
         UtilResourse.sTouch = coreFW.getAudioFW().newSound("touch.ogg");
@@ -163,25 +166,65 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
     }
 
     private void loadSpriteEnemy(GraphicsFW graphicsFW) {
-        UtilResourse.sSpriteEnemy = new ArrayList<>();
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1 = new ArrayList<>();
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 512, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 576, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 640, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 704, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 768, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 704, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 640, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 576, 0, 64, 64));
-        UtilResourse.sSpriteEnemy.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+        UtilResourse.sSpriteEnemy1.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 512, 0, 64, 64));
+
+        UtilResourse.sSpriteEnemy2 = new ArrayList<>();
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                512, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                576, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                640, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                704, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                768, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                704, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                640, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                576, 64, 64, 64));
+        UtilResourse.sSpriteEnemy2.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                512, 64, 64, 64));
+
+        UtilResourse.sSpriteEnemy3 = new ArrayList<>();
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                512, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                576, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                640, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                704, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                768, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                704, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                640, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                576, 128, 64, 64));
+        UtilResourse.sSpriteEnemy3.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                512, 128, 64, 64));
     }
 
     private void loadSpritePlayerShieldsOn(GraphicsFW graphicsFW) {

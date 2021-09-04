@@ -33,8 +33,10 @@ public class HUD {
         graphicsFW.drawLine(0, HUD_HEIGHT, graphicsFW.getWidthFrameBuffer(), HUD_HEIGHT, Color.WHITE);
         graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_passedDistaence) + mPassedDistaence,
                 10, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
-        graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_currentPlayerSpeed) + String.format("%.2f", mCurrentPlayerSpeed),
-                350, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
+        if(mCurrentPlayerShields >= 0) {
+            graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_currentPlayerSpeed) + String.format("%.2f", mCurrentPlayerSpeed),
+                    350, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
+        } else mCurrentPlayerShields = 0;
         graphicsFW.drawText(coreFW.getString(R.string.txt_HUD_currentPlayerShields) + mCurrentPlayerShields,
                 600, 30, Color.YELLOW, 25, UtilResourse.sMainMenuFont);
     }

@@ -33,9 +33,9 @@ class ExitScene extends SceneFW {
         pCoreFW.getGraphicsFW().drawText("Are you shure?",
                 150, 200, Color.WHITE, 50, UtilResourse.sMainMenuFont);
         pCoreFW.getGraphicsFW().drawText("YES",
-                150, 300, Color.WHITE, 35, UtilResourse.sMainMenuFont);
+                175, 300, Color.WHITE, 35, UtilResourse.sMainMenuFont);
         pCoreFW.getGraphicsFW().drawText("NO",
-                350, 300, Color.WHITE, 35, UtilResourse.sMainMenuFont);
+                375, 300, Color.WHITE, 35, UtilResourse.sMainMenuFont);
     }
 
     @Override

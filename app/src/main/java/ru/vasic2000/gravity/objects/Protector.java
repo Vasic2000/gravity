@@ -61,7 +61,7 @@ public class Protector extends ObjectFW {
 
     public void hitPlayer() {
         pX = pMaxScreenX + UtilRandomFW.getGap(0, pMaxScreenX / 3);
-        pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY - UtilResourse.sSpriteEnemy.get(0).getHeight());
+        pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY - UtilResourse.sSpriteEnemy1.get(0).getHeight());
         pSpeed = UtilRandomFW.getGap(1,5);
     }
 

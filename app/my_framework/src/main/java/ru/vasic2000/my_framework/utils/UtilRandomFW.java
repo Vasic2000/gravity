@@ -9,8 +9,8 @@ public class UtilRandomFW {
     }
 
     public static int getGap(int minNumber, int maxNumber) {
-        int gap = 0;
-        gap = (int) (Math.random()*++maxNumber) + minNumber;
+        int gap;
+        gap = (int) (Math.random() * (maxNumber + 1 - minNumber)) + minNumber;
         return gap;
     }
 }
