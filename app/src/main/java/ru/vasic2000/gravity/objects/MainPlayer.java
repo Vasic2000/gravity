@@ -16,6 +16,7 @@ public class MainPlayer extends ObjectFW {
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
     private final int PLAYER_SHIELDS = 5;
+    private final int VERTICAL_SPEED = 2;
 
     private Animation_4_Frames mAnimMainPlayer;
     private Animation_4_Frames mAnimMainPlayerBoost;
@@ -107,11 +108,15 @@ public class MainPlayer extends ObjectFW {
         }
 
 
-        if (mBoosting)
-            pSpeed += 0.1;
-        else
-            pSpeed -= 3;
-        pY -= (pSpeed + GRAVITY);
+        if (mBoosting) {
+            pSpeed += 0.15;
+            pY -= (VERTICAL_SPEED + pSpeed);
+        }
+        else {
+            pSpeed -= 1.5;
+            pY -= (pSpeed + GRAVITY);
+        }
+
         if (pY < pMinScreenY) pY = pMinScreenY;
         if (pY > pMaxScreenY) pY = pMaxScreenY;
         updateBoosting();
@@ -141,10 +146,12 @@ public class MainPlayer extends ObjectFW {
 
     private void startBoosting() {
         mBoosting = true;
+        UtilResourse.sSchieldMusic.play(false, 3);
     }
 
     private void stopBoosting() {
         mBoosting = false;
+        UtilResourse.sSchieldMusic.stop();
     }
 
     public void drawing(GraphicsFW graphicsFW) {
@@ -164,6 +171,8 @@ public class MainPlayer extends ObjectFW {
             mAnimMainPlayerExplose.drawAnimation(graphicsFW, pX, pY);
             if (mTimerGameOwerON.timerDelay(0.6)) {
                 GameManager.gameOver = true;
+                UtilResourse.sGameMusic.stop();
+                UtilResourse.sLooseSound.play(3);
             }
         }
     }
@@ -171,6 +180,7 @@ public class MainPlayer extends ObjectFW {
     public double getPlayerSpeed() {
         return pSpeed;
     }
+
     public int getPlayerShields() {
         return mPlayerShields;
     }
@@ -188,6 +198,7 @@ public class MainPlayer extends ObjectFW {
             mHitEnemy = true;
             mTimerShieldHitON.startTimer();
         }
+        pSpeed = MIN_SPEED;
     }
 
     public void takeProtector() {

@@ -55,7 +55,7 @@ public class MainMenuScene extends SceneFW {
 
     @Override
     public void pause() {
-
+        UtilResourse.sGameMusic.stop();
     }
 
     @Override

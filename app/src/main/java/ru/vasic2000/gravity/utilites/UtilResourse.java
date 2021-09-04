@@ -25,7 +25,9 @@ public class UtilResourse {
     public static ArrayList<Bitmap> sSpriteProtector;
 
     public static MusicFW sGameMusic;
+    public static MusicFW sSchieldMusic;
 
+    public static SoundFW sLooseSound;
     public static SoundFW sHit;
     public static SoundFW sExplode;
     public static SoundFW sTouch;

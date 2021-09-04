@@ -103,6 +103,9 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
     private void loadAudio(CoreFW coreFW) {
         UtilResourse.sGameMusic = coreFW.getAudioFW().newMusic("music.mp3");
+        UtilResourse.sSchieldMusic = coreFW.getAudioFW().newMusic("schield2.mp3");
+
+        UtilResourse.sLooseSound = coreFW.getAudioFW().newSound("loose.mp3");
         UtilResourse.sHit = coreFW.getAudioFW().newSound("hit.ogg");
         UtilResourse.sExplode = coreFW.getAudioFW().newSound("explode.ogg");
         UtilResourse.sTouch = coreFW.getAudioFW().newSound("touch.ogg");
