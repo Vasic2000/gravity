@@ -70,6 +70,9 @@ public class GameManager {
             if (UtilCollisionsDetect.collisionDetect(mMainPlayer, mGiftGenerators.getProtector())) {
                 takeProtector();
             }
+            if (UtilCollisionsDetect.collisionDetect(mMainPlayer, mGiftGenerators.getShield())) {
+                takeShield();
+            }
         }
     }
 
@@ -84,6 +87,11 @@ public class GameManager {
     private void takeProtector() {
         mMainPlayer.takeProtector();
         mGiftGenerators.receiveProtector();
+    }
+
+    private void takeShield() {
+        mMainPlayer.takeShield();
+        mGiftGenerators.receiveShield();
     }
 
     public int getPassedDistaence() {

@@ -130,12 +130,13 @@ public class GameScene extends SceneFW {
         UtilResourse.sHit.dispose();
         UtilResourse.sTouch.dispose();
         UtilResourse.sGameMusic.dispose();
-        UtilResourse.sSchieldMusic.dispose();
+        UtilResourse.sSchieldSound.dispose();
         UtilResourse.sLooseSound.dispose();
     }
 
     @Override
     public void pause() {
+        UtilResourse.sGameMusic.pause();
     }
 
     @Override

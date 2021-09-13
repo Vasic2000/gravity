@@ -4,6 +4,7 @@ import static java.lang.System.exit;
 
 import android.graphics.Color;
 
+import ru.vasic2000.gravity.R;
 import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.SceneFW;
@@ -30,11 +31,11 @@ class ExitScene extends SceneFW {
     @Override
     public void drawing() {
         pCoreFW.getGraphicsFW().clearScene(Color.BLACK);
-        pCoreFW.getGraphicsFW().drawText("Are you shure?",
+        pCoreFW.getGraphicsFW().drawText(pCoreFW.getString(R.string.txt_exitScene_sure),
                 150, 200, Color.WHITE, 50, UtilResourse.sMainMenuFont);
-        pCoreFW.getGraphicsFW().drawText("YES",
+        pCoreFW.getGraphicsFW().drawText(pCoreFW.getString(R.string.txt_exitScene_yes),
                 175, 300, Color.WHITE, 35, UtilResourse.sMainMenuFont);
-        pCoreFW.getGraphicsFW().drawText("NO",
+        pCoreFW.getGraphicsFW().drawText(pCoreFW.getString(R.string.txt_exitScene_no),
                 375, 300, Color.WHITE, 35, UtilResourse.sMainMenuFont);
     }
 

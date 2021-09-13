@@ -29,4 +29,9 @@
     <string name="txt_settingScene_sound">Sound</string>
     <string name="txt_settingScene_music">Music</string>
 
+    <!--ExitScene-->
+    <string name="txt_exitScene_sure">Are you sure?</string>
+    <string name="txt_exitScene_yes">Yes</string>
+    <string name="txt_exitScene_no">No</string>
+
 </resources>

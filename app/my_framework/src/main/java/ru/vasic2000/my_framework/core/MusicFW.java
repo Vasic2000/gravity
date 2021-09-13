@@ -47,6 +47,10 @@ public class MusicFW implements MediaPlayer.OnCompletionListener {
         }
     }
 
+    public void pause() {
+        mMediaPlayer.stop();
+    }
+
     public void dispose() {
         mMediaPlayer.stop();
         mMediaPlayer.release();

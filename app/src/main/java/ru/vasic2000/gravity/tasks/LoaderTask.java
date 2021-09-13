@@ -103,8 +103,8 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
     private void loadAudio(CoreFW coreFW) {
         UtilResourse.sGameMusic = coreFW.getAudioFW().newMusic("music.mp3");
-        UtilResourse.sSchieldMusic = coreFW.getAudioFW().newMusic("schield2.mp3");
 
+        UtilResourse.sSchieldSound = coreFW.getAudioFW().newSound("schield2.mp3");
         UtilResourse.sLooseSound = coreFW.getAudioFW().newSound("loose.mp3");
         UtilResourse.sHit = coreFW.getAudioFW().newSound("hit.ogg");
         UtilResourse.sExplode = coreFW.getAudioFW().newSound("explode.ogg");
@@ -252,14 +252,24 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 
     private void loadGifts(GraphicsFW graphicsFW) {
         UtilResourse.sSpriteProtector = new ArrayList<>();
-        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 256, 192, 32, 32));
-        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 288, 192, 32, 32));
-        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 320, 192, 32, 32));
-        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas,
+        UtilResourse.sSpriteProtector.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 352, 192, 32, 32));
+
+        UtilResourse.sSpriteAddShield = new ArrayList<>();
+        UtilResourse.sSpriteAddShield.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                256, 224, 32, 32));
+        UtilResourse.sSpriteAddShield.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                288, 224, 32, 32));
+        UtilResourse.sSpriteAddShield.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                320, 224, 32, 32));
+        UtilResourse.sSpriteAddShield.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                352, 224, 32, 32));
     }
 
 }

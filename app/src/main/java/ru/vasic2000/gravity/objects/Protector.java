@@ -33,7 +33,7 @@ public class Protector extends ObjectFW {
         this.pMinScreenX = 0 - UtilResourse.sSpriteProtector.get(0).getWidth();
 
         pX = maxScreenX + UtilRandomFW.getGap(0, maxScreenX /3);
-        pY = UtilRandomFW.getGap(minScreenY, maxScreenY);
+        pY = UtilRandomFW.getGap(minScreenY, maxScreenY - UtilResourse.sSpriteProtector.get(0).getHeight());
 
         pRadius = UtilResourse.sSpriteProtector.get(0).getWidth() / 2;
     }
@@ -57,12 +57,6 @@ public class Protector extends ObjectFW {
 
     public void drawing(GraphicsFW graphicsFW){
         mAnimProtector.drawAnimation(graphicsFW, pX, pY);
-    }
-
-    public void hitPlayer() {
-        pX = pMaxScreenX + UtilRandomFW.getGap(0, pMaxScreenX / 3);
-        pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY - UtilResourse.sSpriteEnemy1.get(0).getHeight());
-        pSpeed = UtilRandomFW.getGap(1,5);
     }
 
 }

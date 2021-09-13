@@ -146,12 +146,10 @@ public class MainPlayer extends ObjectFW {
 
     private void startBoosting() {
         mBoosting = true;
-        UtilResourse.sSchieldMusic.play(false, 3);
     }
 
     private void stopBoosting() {
         mBoosting = false;
-        UtilResourse.sSchieldMusic.stop();
     }
 
     public void drawing(GraphicsFW graphicsFW) {
@@ -203,7 +201,12 @@ public class MainPlayer extends ObjectFW {
 
     public void takeProtector() {
         sShieldsOn = true;
+        UtilResourse.sSchieldSound.play(3);
         mTimerShieldOn.startTimer();
+    }
+
+    public void takeShield() {
+        mPlayerShields++;
     }
 
     public static boolean isShieldsOn() {
