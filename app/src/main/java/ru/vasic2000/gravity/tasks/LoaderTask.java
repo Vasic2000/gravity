@@ -109,6 +109,7 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
         UtilResourse.sHit = coreFW.getAudioFW().newSound("hit.ogg");
         UtilResourse.sExplode = coreFW.getAudioFW().newSound("explode.ogg");
         UtilResourse.sTouch = coreFW.getAudioFW().newSound("touch.ogg");
+        UtilResourse.sTakeSound = coreFW.getAudioFW().newSound("take.mp3");
     }
 
     private void loadScore(CoreFW coreFW) {

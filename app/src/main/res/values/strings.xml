@@ -15,6 +15,7 @@
     <string name="txt_gameScene_gameOver_replay">Replay</string>
     <string name="txt_gameScene_gameOver_distance">Distance : </string>
     <string name="txt_gameScene_gameOver_mainMenu">Back to main menu</string>
+    <string name="txt_gameScene_gameOver_newRecord">New Record!!</string>
 
     <!--HUD-->
     <string name="txt_HUD_passedDistaence">Passed : </string>

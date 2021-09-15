@@ -207,6 +207,7 @@ public class MainPlayer extends ObjectFW {
 
     public void takeShield() {
         mPlayerShields++;
+        UtilResourse.sTakeSound.play(3);
     }
 
     public static boolean isShieldsOn() {

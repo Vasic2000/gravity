@@ -10,6 +10,7 @@ import ru.vasic2000.my_framework.core.CoreFW;
 import ru.vasic2000.my_framework.core.SceneFW;
 
 public class GameScene extends SceneFW {
+    private int recordColor = 0;
 
     enum GameState {
         READY,
@@ -102,16 +103,62 @@ public class GameScene extends SceneFW {
     }
 
     private void drawingGameOver() {
+
         pGraficsFW.clearScene(Color.BLACK);
+
+        int a = mGameManager.getPassedDistaence();
+        int b = SettingsGame.getDistance()[0];
+
+        if(a >= b) {
+            differentColorRecord();
+        }
+
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_distance)
-                + " " + mGameManager.getPassedDistaence(),250, 200, Color.WHITE, 40,  null);
+                + " " + mGameManager.getPassedDistaence(),125, 200, Color.WHITE, 40,  null);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_gameOver),
-                250, 300, Color.WHITE, 60,  null);
+                125, 300, Color.WHITE, 60,  null);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_replay),
-                250, 370, Color.WHITE, 40,  null);
+                125, 370, Color.WHITE, 40,  null);
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_mainMenu),
-                250, 440, Color.WHITE, 40,  null);
+                125, 440, Color.WHITE, 40,  null);
     }
+
+    private void differentColorRecord() {
+        switch (recordColor) {
+            case 0:
+                pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_newRecord),
+                        200, 100, Color.LTGRAY, 60, null);
+                recordColor++;
+                break;
+            case 1:
+                pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_newRecord),
+                        200, 100, Color.WHITE, 60, null);
+                recordColor++;
+                break;
+            case 2:
+                pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_newRecord),
+                        200, 100, Color.YELLOW, 60, null);
+                recordColor++;
+                break;
+            case 3:
+                pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_newRecord),
+                        200, 100, Color.RED, 60, null);
+                recordColor++;
+                break;
+            case 4:
+                pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_newRecord),
+                         200, 100, Color.GREEN, 60, null);
+                recordColor++;
+                break;
+            case 5:
+                pGraficsFW.drawText(pCoreFW.getString(R.string.txt_gameScene_gameOver_newRecord),
+                        200, 100, Color.GRAY, 60, null);
+                recordColor++;
+                break;
+        }
+        if(recordColor > 5) recordColor = 0;
+    }
+
     private void updateStateGameOver() {
 
         SettingsGame.addDistance(mGameManager.getPassedDistaence());

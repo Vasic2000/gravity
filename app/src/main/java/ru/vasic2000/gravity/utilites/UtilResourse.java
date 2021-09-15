@@ -32,6 +32,7 @@ public class UtilResourse {
     public static SoundFW sHit;
     public static SoundFW sExplode;
     public static SoundFW sTouch;
+    public static SoundFW sTakeSound;
 
     public static Typeface sMainMenuFont;
 
