@@ -12,10 +12,10 @@ import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class MainPlayer extends ObjectFW {
-    private final int GRAVITY = -3;
+    private final int GRAVITY = -5;
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
-    private final int PLAYER_SHIELDS = 5;
+    private final int PLAYER_SHIELDS = 4;
     private final int VERTICAL_SPEED = 2;
 
     private Animation_4_Frames mAnimMainPlayer;
