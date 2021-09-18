@@ -19,6 +19,7 @@ public class TopDistance extends SceneFW {
         }
     }
 
+
     @Override
     public void update() {
         if(pCoreFW.getTouchListenerFW().getTuchUp(0, pSceneHeight, pSceneWidth, pSceneHeight)) {
@@ -30,6 +31,8 @@ public class TopDistance extends SceneFW {
 
     @Override
     public void drawing() {
+
+
         pGraficsFW.drawText(pCoreFW.getString(R.string.txt_top_distance),
                 120, 200, Color.GREEN, 60, UtilResourse.sMainMenuFont);
         pGraficsFW.drawText(String.valueOf(mNumbers[0]),

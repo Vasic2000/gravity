@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CoreFW extends AppCompatActivity {
 
-    private final int FRAME_BUFFER_WIDTH = 800;
+    private final int FRAME_BUFFER_WIDTH = 950;
     private final int FRAME_BUFFER_HEIGHT = 600;
 
     private LoopFW mLoopFW;
