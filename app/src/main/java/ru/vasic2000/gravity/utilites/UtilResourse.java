@@ -23,14 +23,16 @@ public class UtilResourse {
     public static ArrayList<Bitmap> sSpritePlayerShieldsOn;
     public static ArrayList<Bitmap> sSpritePlayerShieldsBoost;
     public static ArrayList<Bitmap> sSpriteProtector;
+    public static ArrayList<Bitmap> sSpriteAddShield;
 
     public static MusicFW sGameMusic;
-    public static MusicFW sSchieldMusic;
 
     public static SoundFW sLooseSound;
+    public static SoundFW sSchieldSound;
     public static SoundFW sHit;
     public static SoundFW sExplode;
     public static SoundFW sTouch;
+    public static SoundFW sTakeSound;
 
     public static Typeface sMainMenuFont;
 

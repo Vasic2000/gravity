@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Гравитация</string>
+    <string name="loading">Загрузка</string>
+
+    <!--MainMenuScene-->
+    <string name="txt_mainMenu_nameGame">Гравитация</string>
+    <string name="txt_mainMenu_newGame">Новая игра</string>
+    <string name="txt_mainMenu_settings">Настройки</string>
+    <string name="txt_mainMenu_results">Результаты</string>
+    <string name="txt_mainMenu_exitGame">Выход</string>
+
+    <!--GameScene-->
+    <string name="txt_gameScene_stateReady_ready">Вы готовы?</string>
+    <string name="txt_gameScene_gameOver_gameOver">ПРОВАЛ!!!</string>
+    <string name="txt_gameScene_gameOver_replay">Повторить</string>
+    <string name="txt_gameScene_gameOver_distance">Расстояние : </string>
+    <string name="txt_gameScene_gameOver_mainMenu">Вернуться в главное меню</string>
+    <string name="txt_gameScene_gameOver_newRecord">Новый рекорд!!</string>
+
+    <!--HUD-->
+    <string name="txt_HUD_passedDistaence">Пройдено : </string>
+    <string name="txt_HUD_currentPlayerSpeed">Скорость : </string>
+    <string name="txt_HUD_currentPlayerShields">Щиты : </string>
+
+    <!--Distance-->
+    <string name="txt_top_distance">Лучшие результаты</string>
+
+    <!--SettingsScene-->
+    <string name="txt_settingScene_settings">Настройки</string>
+    <string name="txt_settingScene_sound">Звук</string>
+    <string name="txt_settingScene_music">Музыка</string>
+
+    <!--ExitScene-->
+    <string name="txt_exitScene_sure">Вы уверены?</string>
+    <string name="txt_exitScene_yes">Да</string>
+    <string name="txt_exitScene_no">Нет</string>
+</resources>

@@ -15,6 +15,10 @@ public class SoundFW {
         soundPool.play(sound, volume, volume, 0, 0, 1);
     }
 
+    public void stop() {
+        soundPool.stop(sound);
+    }
+
     public void dispose() {
         soundPool.unload(sound);
     }
