@@ -4,7 +4,7 @@
     <string name="loading">Загрузка</string>
 
     <!--MainMenuScene-->
-    <string name="txt_mainMenu_nameGame">Гравитация</string>
+    <string name="txt_mainMenu_nameGame">Великий побег</string>
     <string name="txt_mainMenu_newGame">Новая игра</string>
     <string name="txt_mainMenu_settings">Настройки</string>
     <string name="txt_mainMenu_results">Результаты</string>

@@ -6,7 +6,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "ru.vasic2000.gravity"
+        applicationId "ru.vasic2000.greatescape"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
