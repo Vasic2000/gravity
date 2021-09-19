@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.vasic2000.gravity">
+    package="ru.vasic2000.great_runaway">
 
     <uses-permission
         android:name="android.perssion.WAKE_LOCK">
@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gravity">
-        <activity android:name=".Main"
+        <activity android:name="ru.vasic2000.great_runaway.Main"
             android:screenOrientation="landscape">
 
             <intent-filter>
