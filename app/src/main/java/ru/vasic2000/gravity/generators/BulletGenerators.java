@@ -1,6 +1,9 @@
 package ru.vasic2000.gravity.generators;
 
+import android.icu.text.Edits;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.objects.AddShield;
@@ -44,10 +47,12 @@ public class BulletGenerators {
             mBulletTimer.startTimer();
         }
 
-        for (Bullet bullet : mBulletArrayList) {
+        Iterator<Bullet> bulletIterator = mBulletArrayList.iterator();
+        while(bulletIterator.hasNext()) {
+            bullet = bulletIterator.next();
             bullet.update(playerSpeed);
-            if (bullet.getX() > mMaxScreenX) {
-                mBulletArrayList.remove(bullet);
+            if(bullet.getX() > mMaxScreenX) {
+                bulletIterator.remove();
                 mBulletTimer.startTimer();
             }
         }
