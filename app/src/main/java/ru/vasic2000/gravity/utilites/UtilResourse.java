@@ -24,6 +24,7 @@ public class UtilResourse {
     public static ArrayList<Bitmap> sSpritePlayerShieldsBoost;
     public static ArrayList<Bitmap> sSpriteProtector;
     public static ArrayList<Bitmap> sSpriteAddShield;
+    public static ArrayList<Bitmap> sSpriteBullet;
 
     public static MusicFW sGameMusic;
 

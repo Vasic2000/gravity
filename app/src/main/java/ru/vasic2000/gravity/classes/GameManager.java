@@ -1,6 +1,7 @@
 package ru.vasic2000.gravity.classes;
 
 import ru.vasic2000.gravity.generators.BacgroundGenerator;
+import ru.vasic2000.gravity.generators.BulletGenerators;
 import ru.vasic2000.gravity.generators.EnemyGenerator;
 import ru.vasic2000.gravity.generators.GiftGenerators;
 import ru.vasic2000.gravity.objects.Enemy;
@@ -22,6 +23,7 @@ public class GameManager {
     private BacgroundGenerator mBacgroundGenerator;
     private EnemyGenerator mEnemyGenerator;
     private GiftGenerators mGiftGenerators;
+    private BulletGenerators mBulletGenerator;
     private HUD mHud;
 
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
@@ -40,6 +42,7 @@ public class GameManager {
         mBacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, mMinScreenY);
         mEnemyGenerator = new EnemyGenerator(mMaxScreenX, mMaxScreenY, mMinScreenY);
         mGiftGenerators = new GiftGenerators(sceneWidth, sceneHeight, mMinScreenY);
+        mBulletGenerator = new BulletGenerators(sceneWidth, sceneWidth);
     }
 
     public void update() {
@@ -56,6 +59,7 @@ public class GameManager {
         mBacgroundGenerator.update(mMainPlayer.getPlayerSpeed());
         mEnemyGenerator.update(mMainPlayer.getPlayerSpeed(), mPassedDistaence);
         mGiftGenerators.update(mMainPlayer.getPlayerSpeed());
+        mBulletGenerator.update(mMainPlayer.getPlayerSpeed(), mMainPlayer.getX(), mMainPlayer.getY());
     }
 
     private void checkHit() {
@@ -81,6 +85,7 @@ public class GameManager {
         mBacgroundGenerator.drawing(graphicsFW);
         mEnemyGenerator.drawing(graphicsFW);
         mGiftGenerators.drawing(graphicsFW);
+        mBulletGenerator.drawing(graphicsFW);
         mHud.drawing(graphicsFW);
     }
 
@@ -96,6 +101,10 @@ public class GameManager {
 
     public int getPassedDistaence() {
         return mPassedDistaence;
+    }
+
+    public int getPlayerY() {
+        return mMainPlayer.getY();
     }
 
 }

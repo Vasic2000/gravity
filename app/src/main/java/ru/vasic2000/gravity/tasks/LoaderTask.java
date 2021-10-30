@@ -79,6 +79,7 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
 //        }
         publishProgress(500);
         loadGifts(mCoreFW.getGraphicsFW());
+        loadBullets(mCoreFW.getGraphicsFW());
 //        try {
 //            Thread.sleep(300);
 //        } catch (InterruptedException e) {
@@ -271,6 +272,18 @@ public class LoaderTask extends AsyncTask<Void, Integer, Void> {
                 320, 224, 32, 32));
         UtilResourse.sSpriteAddShield.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
                 352, 224, 32, 32));
+    }
+
+    private void loadBullets(GraphicsFW graphicsFW) {
+        UtilResourse.sSpriteBullet = new ArrayList<>();
+        UtilResourse.sSpriteBullet.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                384, 224, 32, 32));
+        UtilResourse.sSpriteBullet.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                416, 224, 32, 32));
+        UtilResourse.sSpriteBullet.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                448, 224, 32, 32));
+        UtilResourse.sSpriteBullet.add(graphicsFW.newSprite(UtilResourse.sTextureAtlas2,
+                480, 224, 32, 32));
     }
 
 }
