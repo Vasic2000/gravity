@@ -1,19 +1,12 @@
 package ru.vasic2000.gravity.generators;
 
-import android.icu.text.Edits;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import ru.vasic2000.gravity.classes.GameManager;
-import ru.vasic2000.gravity.objects.AddShield;
 import ru.vasic2000.gravity.objects.Bullet;
-import ru.vasic2000.gravity.objects.Enemy;
-import ru.vasic2000.gravity.objects.MainPlayer;
-import ru.vasic2000.gravity.objects.Protector;
 import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.core.GraphicsFW;
-import ru.vasic2000.my_framework.core.SceneFW;
 import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class BulletGenerators {
@@ -34,26 +27,27 @@ public class BulletGenerators {
         this.mMaxScreenX = maxScreenX + UtilResourse.sSpriteBullet.get(0).getWidth();
 
         mBulletArrayList = new ArrayList<>();
-
         mBulletTimer = new UtilTimerDelay();
         mBulletTimer.startTimer();
     }
 
-    public void update(double playerSpeed, int playerX, int playerY) {
+    public void update(double playerSpeed, GameManager.BossState mBossState, int playerX, int playerY) {
 
-        if(mBulletTimer.timerDelay(2)) {
-            bullet = new Bullet(mMaxScreenX, playerX, playerY);
-            mBulletArrayList.add(bullet);
-            mBulletTimer.startTimer();
-        }
-
-        Iterator<Bullet> bulletIterator = mBulletArrayList.iterator();
-        while(bulletIterator.hasNext()) {
-            bullet = bulletIterator.next();
-            bullet.update(playerSpeed);
-            if(bullet.getX() > mMaxScreenX) {
-                bulletIterator.remove();
+        if(mBossState == GameManager.BossState.BOSS) {
+            if (mBulletTimer.timerDelay(2)) {
+                bullet = new Bullet(mMaxScreenX, playerX, playerY);
+                mBulletArrayList.add(bullet);
                 mBulletTimer.startTimer();
+            }
+
+            Iterator<Bullet> bulletIterator = mBulletArrayList.iterator();
+            while (bulletIterator.hasNext()) {
+                bullet = bulletIterator.next();
+                bullet.update(playerSpeed);
+                if (bullet.getX() > mMaxScreenX) {
+                    bulletIterator.remove();
+                    mBulletTimer.startTimer();
+                }
             }
         }
     }

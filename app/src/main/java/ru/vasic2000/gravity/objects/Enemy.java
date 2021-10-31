@@ -4,6 +4,9 @@ import static ru.vasic2000.gravity.classes.GameManager.SPEED_ANIMATION;
 
 import android.graphics.Rect;
 
+import java.util.Iterator;
+
+import ru.vasic2000.gravity.classes.GameManager;
 import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.core.Animation_9_Frames;
 import ru.vasic2000.my_framework.core.GraphicsFW;
@@ -76,8 +79,8 @@ public class Enemy extends ObjectFW {
     public void update(double playerSpeed, int mPassedDistance) {
         pX -= pSpeed;
         pX -= playerSpeed;
-        if(pX < pMinScreenX) {
-            changeEnamy(mPassedDistance);
+        if (pX < pMinScreenX) {
+            addEnamy(mPassedDistance);
         }
         mAnimEnemy.runAnimation();
         pHitBox = new Rect(pX, pY,
@@ -85,27 +88,29 @@ public class Enemy extends ObjectFW {
                 UtilResourse.sSpriteEnemy1.get(0).getWidth());
     }
 
+
     public void drawing(GraphicsFW graphicsFW){
         mAnimEnemy.drawAnimation(graphicsFW, pX, pY);
     }
 
     public void hitPlayer(int mPassedDistance) {
-        changeEnamy(mPassedDistance);
+        addEnamy(mPassedDistance);
     }
 
-    private void changeEnamy(int mPassedDistance) {
+    private void addEnamy(int mPassedDistance) {
+
         pX = pMaxScreenX + UtilRandomFW.getGap(0, pMaxScreenX / 3);
         pY = UtilRandomFW.getGap(pMinScreenY, pMaxScreenY - UtilResourse.sSpriteEnemy1.get(0).getHeight());
 
-        if(mPassedDistance > 15000) {
-            initTypeEnamy(UtilRandomFW.getGap(1,3));
-            pSpeed = UtilRandomFW.getGap(6,8);
-        } else if(mPassedDistance > 7000) {
-            initTypeEnamy(UtilRandomFW.getGap(1,2));
-            pSpeed = UtilRandomFW.getGap(4,7);
+        if (mPassedDistance > 12000) {
+            initTypeEnamy(UtilRandomFW.getGap(1, 3));
+            pSpeed = UtilRandomFW.getGap(6, 8);
+        } else if (mPassedDistance > 6000) {
+            initTypeEnamy(UtilRandomFW.getGap(1, 2));
+            pSpeed = UtilRandomFW.getGap(4, 7);
         } else {
             initTypeEnamy(1);
-            pSpeed = UtilRandomFW.getGap(1,4);
+            pSpeed = UtilRandomFW.getGap(1, 4);
         }
     }
 }
