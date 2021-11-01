@@ -28,7 +28,7 @@ public class Enemy extends ObjectFW {
         this.pMinScreenY = minScreenY;
         this.pMinScreenX = - UtilResourse.sSpriteEnemy1.get(0).getWidth();
 
-        pX = maxScreenX + UtilRandomFW.getGap(0, maxScreenX /3);
+        pX = maxScreenX + UtilRandomFW.getGap(0, maxScreenX / 2);
         pY = UtilRandomFW.getGap(minScreenY, maxScreenY - UtilResourse.sSpriteEnemy1.get(0).getHeight());
 
         pRadius = UtilResourse.sSpriteEnemy1.get(0).getWidth() / 4;
@@ -76,12 +76,9 @@ public class Enemy extends ObjectFW {
 
     }
 
-    public void update(double playerSpeed, int mPassedDistance) {
+    public void update(double playerSpeed) {
         pX -= pSpeed;
         pX -= playerSpeed;
-        if (pX < pMinScreenX) {
-            addEnamy(mPassedDistance);
-        }
         mAnimEnemy.runAnimation();
         pHitBox = new Rect(pX, pY,
                 UtilResourse.sSpriteEnemy1.get(0).getWidth(),

@@ -12,7 +12,7 @@ import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class MainPlayer extends ObjectFW {
-    private final int GRAVITY = -3;
+    private final int GRAVITY = -4;
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
     private final int PLAYER_SHIELDS = 5;
@@ -112,7 +112,7 @@ public class MainPlayer extends ObjectFW {
 
         if (mBossState == GameManager.BossState.LEVEL) {
             if (mBoosting) {
-                pSpeed += 0.15;
+                pSpeed += 0.2;
                 pY -= (VERTICAL_SPEED + pSpeed);
             } else {
                 pSpeed -= 1.5;

@@ -44,7 +44,7 @@ public class EnemyGenerator {
         Iterator<Enemy> enemyIterator = mEnemyArrayList.iterator();
         while (enemyIterator.hasNext()) {
             enemy = enemyIterator.next();
-            enemy.update(playerSpeed, mPassedDistance);
+            enemy.update(playerSpeed);
             if (enemy.getX() < - UtilResourse.sSpriteEnemy1.get(0).getWidth()) {
                 enemyIterator.remove();
             }

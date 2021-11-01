@@ -44,7 +44,7 @@ public class GameManager {
         int mMaxScreenY = sceneHeight;
         int mMinScreenY = mHud.getHUD_HEIGHT();
 
-        mPassedDistaence = 9000;
+        mPassedDistaence = 16600;
 
         gameOver = false;
 
@@ -68,7 +68,9 @@ public class GameManager {
 
     private void updateObjects(int mPassedDistaence, BossState mBossStete) {
 
-        if(mPassedDistaence >= 17000) mBossStete = BossState.BOSS;
+        if(mPassedDistaence >= 17000) {
+            mBossStete = BossState.BOSS;
+        }
 
         mMainPlayer.update(mBossStete);
         mBacgroundGenerator.update(mMainPlayer.getPlayerSpeed());
