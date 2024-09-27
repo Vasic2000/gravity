@@ -1,6 +1,7 @@
 package ru.vasic2000.gravity.classes;
 
 import ru.vasic2000.gravity.generators.BacgroundGenerator;
+import ru.vasic2000.gravity.generators.BulletGenerators;
 import ru.vasic2000.gravity.generators.EnemyGenerator;
 import ru.vasic2000.gravity.generators.GiftGenerators;
 import ru.vasic2000.gravity.objects.Enemy;
@@ -14,6 +15,12 @@ import ru.vasic2000.my_framework.core.GraphicsFW;
 
 public class GameManager {
 
+    public enum BossState {
+        LEVEL,
+        BOSS,
+        GAME_OVER;
+    }
+
     public final static double SPEED_ANIMATION = 2;
     private int mPassedDistaence;
     public static boolean gameOver;
@@ -22,7 +29,10 @@ public class GameManager {
     private BacgroundGenerator mBacgroundGenerator;
     private EnemyGenerator mEnemyGenerator;
     private GiftGenerators mGiftGenerators;
+    private BulletGenerators mBulletGenerator;
     private HUD mHud;
+
+    private BossState mBossStete;
 
     public GameManager(CoreFW coreFW, int sceneWidth, int sceneHeight) {
         init(coreFW, sceneWidth, sceneHeight);
@@ -34,16 +44,21 @@ public class GameManager {
         int mMaxScreenY = sceneHeight;
         int mMinScreenY = mHud.getHUD_HEIGHT();
 
+        mPassedDistaence = 16600;
+
         gameOver = false;
 
         mMainPlayer = new MainPlayer(coreFW, mMaxScreenX, mMaxScreenY, mMinScreenY);
         mBacgroundGenerator = new BacgroundGenerator(sceneWidth, sceneHeight, mMinScreenY);
         mEnemyGenerator = new EnemyGenerator(mMaxScreenX, mMaxScreenY, mMinScreenY);
         mGiftGenerators = new GiftGenerators(sceneWidth, sceneHeight, mMinScreenY);
+        mBulletGenerator = new BulletGenerators(sceneWidth, sceneWidth);
+
+        mBossStete = BossState.LEVEL;
     }
 
     public void update() {
-        updateObjects(mPassedDistaence);
+        updateObjects(mPassedDistaence, mBossStete);
         mPassedDistaence += mMainPlayer.getPlayerSpeed();
         int mCurrentPlayerShields = mMainPlayer.getPlayerShields();
         double mCurrentPlayerSpeed = mMainPlayer.getPlayerSpeed();
@@ -51,11 +66,17 @@ public class GameManager {
         checkHit();
     }
 
-    private void updateObjects(int mPassedDistaence) {
-        mMainPlayer.update();
+    private void updateObjects(int mPassedDistaence, BossState mBossStete) {
+
+        if(mPassedDistaence >= 17000) {
+            mBossStete = BossState.BOSS;
+        }
+
+        mMainPlayer.update(mBossStete);
         mBacgroundGenerator.update(mMainPlayer.getPlayerSpeed());
-        mEnemyGenerator.update(mMainPlayer.getPlayerSpeed(), mPassedDistaence);
+        mEnemyGenerator.update(mMainPlayer.getPlayerSpeed(), mBossStete, mPassedDistaence);
         mGiftGenerators.update(mMainPlayer.getPlayerSpeed());
+        mBulletGenerator.update(mMainPlayer.getPlayerSpeed(), mBossStete, mMainPlayer.getX(), mMainPlayer.getY());
     }
 
     private void checkHit() {
@@ -81,6 +102,7 @@ public class GameManager {
         mBacgroundGenerator.drawing(graphicsFW);
         mEnemyGenerator.drawing(graphicsFW);
         mGiftGenerators.drawing(graphicsFW);
+        mBulletGenerator.drawing(graphicsFW);
         mHud.drawing(graphicsFW);
     }
 

@@ -12,7 +12,7 @@ import ru.vasic2000.gravity.utilites.UtilResourse;
 import ru.vasic2000.my_framework.utils.UtilTimerDelay;
 
 public class MainPlayer extends ObjectFW {
-    private final int GRAVITY = -3;
+    private final int GRAVITY = -4;
     private final int MAX_SPEED = 15;
     private final int MIN_SPEED = 1;
     private final int PLAYER_SHIELDS = 5;
@@ -89,7 +89,10 @@ public class MainPlayer extends ObjectFW {
                 UtilResourse.sSpritePlayerShieldsBoost.get(3));
     }
 
-    public void update() {
+    public void update(GameManager.BossState mBossState) {
+        if(mBossState == GameManager.BossState.BOSS) {
+            pSpeed = 0;
+        }
 
         if(mCoreFW.getTouchListenerFW().getTuchDown(0, pMaxScreenY, pMaxScreenX, pMaxScreenY)) {
             startBoosting();
@@ -107,19 +110,26 @@ public class MainPlayer extends ObjectFW {
             mAnimMainPlayerExplose.runAnimation();
         }
 
-
-        if (mBoosting) {
-            pSpeed += 0.15;
-            pY -= (VERTICAL_SPEED + pSpeed);
-        }
-        else {
-            pSpeed -= 1.5;
-            pY -= (pSpeed + GRAVITY);
+        if (mBossState == GameManager.BossState.LEVEL) {
+            if (mBoosting) {
+                pSpeed += 0.2;
+                pY -= (VERTICAL_SPEED + pSpeed);
+            } else {
+                pSpeed -= 1.5;
+                pY -= (pSpeed + GRAVITY);
+            }
+        } else {
+            if (mBoosting) {
+                pY -= (VERTICAL_SPEED + 3);
+            } else {
+                pY -= GRAVITY;
+            }
         }
 
         if (pY < pMinScreenY) pY = pMinScreenY;
         if (pY > pMaxScreenY) pY = pMaxScreenY;
-        updateBoosting();
+
+        updateBoosting(mBossState);
         pHitBox = new Rect(pX, pY,
                 UtilResourse.sSpritePlayer.get(0).getWidth(),
                 UtilResourse.sSpritePlayer.get(0).getWidth());
@@ -129,7 +139,7 @@ public class MainPlayer extends ObjectFW {
         }
     }
 
-    private void updateBoosting() {
+    private void updateBoosting(GameManager.BossState mBossState) {
         if (mBoosting) {
             if (sShieldsOn) {
                 mAnimMainPlayerShieldsBoostOn.runAnimation();
@@ -139,9 +149,10 @@ public class MainPlayer extends ObjectFW {
         } else if (sShieldsOn) {
             mAnimMainPlayerShieldsOn.runAnimation();
         } else mAnimMainPlayer.runAnimation();
-
-        if (pSpeed > MAX_SPEED) pSpeed = MAX_SPEED;
-        if (pSpeed < MIN_SPEED) pSpeed = MIN_SPEED;
+        if(mBossState == GameManager.BossState.LEVEL) {
+            if (pSpeed > MAX_SPEED) pSpeed = MAX_SPEED;
+            if (pSpeed < MIN_SPEED) pSpeed = MIN_SPEED;
+        }
     }
 
     private void startBoosting() {
